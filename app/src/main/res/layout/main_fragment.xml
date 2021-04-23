@@ -23,7 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@android:drawable/stat_sys_upload_done" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/passenger" />
 
             <TextView
                 android:id="@+id/textViewPs"
@@ -47,7 +48,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@android:drawable/stat_sys_download_done" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/driver" />
 
             <TextView
                 android:id="@+id/textViewCn"

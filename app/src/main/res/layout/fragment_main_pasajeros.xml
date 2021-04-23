@@ -21,7 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@android:drawable/stat_sys_upload_done" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/postularse" />
 
             <TextView
                 android:id="@+id/textViewCNew"
@@ -45,7 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@android:drawable/stat_sys_download_done" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/historial" />
 
             <TextView
                 android:id="@+id/textViewCHist"

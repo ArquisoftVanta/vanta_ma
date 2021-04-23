@@ -21,7 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@android:drawable/stat_sys_upload_done" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/nueva" />
 
             <TextView
                 android:id="@+id/textViewPNew"
@@ -45,7 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@android:drawable/stat_sys_download_done" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/servicios" />
 
             <TextView
                 android:id="@+id/textViewPHist"
