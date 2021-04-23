@@ -1,4 +1,4 @@
-package com.dragonfly.vanta.ui.Fragments;
+package com.dragonfly.vanta.Views.Fragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -11,13 +11,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.dragonfly.vanta.R;
 import com.dragonfly.vanta.ViewModels.MainViewModel;
 
 public class MainFragment extends Fragment {
 
-    private MainViewModel mViewModel;
+    //private MainViewModel mViewModel;
+    private ImageButton botonPasajero;
+    private ImageButton botonConductor;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -30,11 +33,12 @@ public class MainFragment extends Fragment {
         return inflater.inflate(R.layout.main_fragment, container, false);
     }
 
+    /*
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        // TODO: Use the ViewModel
-    }
 
+    }
+    */
 }

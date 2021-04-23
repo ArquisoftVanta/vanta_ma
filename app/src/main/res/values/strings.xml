@@ -2,5 +2,12 @@
     <string name="app_name">Vanta</string>
     <string name="pasajeros">PASAJEROS</string>
     <string name="conductores">CONDUCTORES</string>
+    <string name="new_conds">NUEVO VIAJE</string>
+    <string name="hist_conds">VIAJES REALIZADOS</string>
+    <string name="new_pasj">NUEVA POSTULACION</string>
+    <string name="hist_pasj">POSTULACIONES REALIZADAS</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
