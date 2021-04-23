@@ -17,7 +17,7 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/imageButtonPNew"
+                android:id="@+id/imageButtonCNew"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -42,7 +42,7 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/imageButtonPHist"
+                android:id="@+id/imageButtonCHist"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
