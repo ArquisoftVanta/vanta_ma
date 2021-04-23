@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.dragonfly.vanta.Views.Fragments.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_mainConductorFragment2"
+            app:destination="@id/mainConductorFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_mainPasajeroFragment2"
+            app:destination="@id/mainPasajeroFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainConductorFragment"
+        android:name="com.dragonfly.vanta.Views.Fragments.MainConductorFragment"
+        android:label="fragment_main_conductor"
+        tools:layout="@layout/fragment_main_conductor" />
+    <fragment
+        android:id="@+id/mainPasajeroFragment"
+        android:name="com.dragonfly.vanta.Views.Fragments.MainPasajeroFragment"
+        android:label="fragment_main_pasajeros"
+        tools:layout="@layout/fragment_main_pasajeros" />
+</navigation>
