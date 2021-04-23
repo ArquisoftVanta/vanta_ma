@@ -12,19 +12,52 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/imageButtonConductor"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@android:drawable/stat_sys_upload_done" />
+            android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/imageButtonPasajero"
+            <ImageButton
+                android:id="@+id/imageButtonConductor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@android:drawable/stat_sys_upload_done" />
+
+            <TextView
+                android:id="@+id/textViewPs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:text="@string/pasajeros"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@android:drawable/stat_sys_download_done" />
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imageButtonPasajero"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@android:drawable/stat_sys_download_done" />
+
+            <TextView
+                android:id="@+id/textViewCn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:text="@string/conductores"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
