@@ -1,4 +1,4 @@
-package com.dragonfly.vanta.Views.Fragments;
+package com.dragonfly.vanta.Views.Fragments.menu;
 
 import android.os.Bundle;
 

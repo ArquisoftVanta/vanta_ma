@@ -1,4 +1,4 @@
-package com.dragonfly.vanta.Views.Fragments;
+package com.dragonfly.vanta.Views.Fragments.menu;
 
 import android.os.Bundle;
 
@@ -13,11 +13,6 @@ import android.widget.ImageButton;
 
 import com.dragonfly.vanta.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MainPasajeroFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MainPasajeroFragment extends Fragment {
 
     private ImageButton botonNew;

@@ -7,24 +7,28 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.dragonfly.vanta.Views.Fragments.MainFragment"
+        android:name="com.dragonfly.vanta.Views.Fragments.menu.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/main_fragment">
         <action
             android:id="@+id/action_mainFragment_to_mainConductorFragment2"
-            app:destination="@id/mainConductorFragment" />
+            app:destination="@id/mainConductorFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
         <action
             android:id="@+id/action_mainFragment_to_mainPasajeroFragment2"
-            app:destination="@id/mainPasajeroFragment" />
+            app:destination="@id/mainPasajeroFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/mainConductorFragment"
-        android:name="com.dragonfly.vanta.Views.Fragments.MainConductorFragment"
+        android:name="com.dragonfly.vanta.Views.Fragments.menu.MainConductorFragment"
         android:label="fragment_main_conductor"
         tools:layout="@layout/fragment_main_conductor" />
     <fragment
         android:id="@+id/mainPasajeroFragment"
-        android:name="com.dragonfly.vanta.Views.Fragments.MainPasajeroFragment"
+        android:name="com.dragonfly.vanta.Views.Fragments.menu.MainPasajeroFragment"
         android:label="fragment_main_pasajeros"
         tools:layout="@layout/fragment_main_pasajeros" />
 </navigation>

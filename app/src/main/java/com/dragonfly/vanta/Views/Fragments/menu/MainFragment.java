@@ -1,13 +1,10 @@
-package com.dragonfly.vanta.Views.Fragments;
-
-import androidx.lifecycle.ViewModelProvider;
+package com.dragonfly.vanta.Views.Fragments.menu;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -16,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.dragonfly.vanta.R;
-import com.dragonfly.vanta.ViewModels.MainViewModel;
 
 public class MainFragment extends Fragment {
 
