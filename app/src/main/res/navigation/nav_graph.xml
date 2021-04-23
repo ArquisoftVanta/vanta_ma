@@ -25,10 +25,49 @@
         android:id="@+id/mainConductorFragment"
         android:name="com.dragonfly.vanta.Views.Fragments.menu.MainConductorFragment"
         android:label="fragment_main_conductor"
-        tools:layout="@layout/fragment_main_conductor" />
+        tools:layout="@layout/fragment_main_conductor" >
+        <action
+            android:id="@+id/action_mainConductorFragment_to_historialFragment"
+            app:destination="@id/historialFragment" />
+        <action
+            android:id="@+id/action_mainConductorFragment_to_newServiceFragment"
+            app:destination="@id/newServiceFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainPasajeroFragment"
         android:name="com.dragonfly.vanta.Views.Fragments.menu.MainPasajeroFragment"
         android:label="fragment_main_pasajeros"
-        tools:layout="@layout/fragment_main_pasajeros" />
+        tools:layout="@layout/fragment_main_pasajeros" >
+        <action
+            android:id="@+id/action_mainPasajeroFragment_to_historialFragment"
+            app:destination="@id/historialFragment" />
+        <action
+            android:id="@+id/action_mainPasajeroFragment_to_newPostFragment"
+            app:destination="@id/newPostFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newPostFragment"
+        android:name="com.dragonfly.vanta.Views.Fragments.service.NewPostFragment"
+        android:label="fragment_new_post"
+        tools:layout="@layout/fragment_new_post" />
+    <fragment
+        android:id="@+id/historialFragment"
+        android:name="com.dragonfly.vanta.Views.Fragments.service.HistorialFragment"
+        android:label="fragment_historial"
+        tools:layout="@layout/fragment_historial" />
+    <fragment
+        android:id="@+id/newServiceFragment"
+        android:name="com.dragonfly.vanta.Views.Fragments.service.NewServiceFragment"
+        android:label="fragment_new_service"
+        tools:layout="@layout/fragment_new_service" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.dragonfly.vanta.Views.Fragments.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/vehicleFragment"
+        android:name="com.dragonfly.vanta.Views.Fragments.vehicle.VehicleFragment"
+        android:label="fragment_vehicle"
+        tools:layout="@layout/fragment_vehicle" />
 </navigation>
