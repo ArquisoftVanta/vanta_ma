@@ -1,4 +1,4 @@
-package com.dragonfly.vanta.ui.main;
+package com.dragonfly.vanta.ViewModels;
 
 import androidx.lifecycle.ViewModel;
 

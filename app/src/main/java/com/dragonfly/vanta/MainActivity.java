@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.dragonfly.vanta.ui.main.MainFragment;
+import com.dragonfly.vanta.ui.Fragments.MainFragment;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,7 +1,6 @@
-package com.dragonfly.vanta.ui.main;
+package com.dragonfly.vanta.ui.Fragments;
 
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 
@@ -14,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dragonfly.vanta.R;
+import com.dragonfly.vanta.ViewModels.MainViewModel;
 
 public class MainFragment extends Fragment {
 
