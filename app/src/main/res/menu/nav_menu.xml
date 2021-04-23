@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/mainMenu"
+        android:id="@+id/mainFragment"
         android:icon="@android:drawable/ic_menu_more"
         android:title="@string/menu_incio" />
 
     <item
-        android:id="@+id/profileMenu"
+        android:id="@+id/profileFragment"
         android:icon="@android:drawable/ic_menu_myplaces"
         android:title="@string/menu_perfil" />
 
     <item
-        android:id="@+id/autoMenu"
+        android:id="@+id/vehicleFragment"
         android:icon="@android:drawable/ic_menu_mylocation"
         android:title="@string/menu_auto" />
 
