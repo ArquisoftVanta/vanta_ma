@@ -12,5 +12,8 @@
     <string name="menu_auto">Automovil</string>
     <string name="menu_mail">email@unal.com</string>
 
+    <string name="abrir">Abrir</string>
+    <string name="cerrar">Cerrar</string>
+
 
 </resources>
