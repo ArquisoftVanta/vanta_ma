@@ -1,0 +1,8 @@
+mutation LoginUser($usermail: String!, $password: String!){
+    loginUser(usermail: $usermail, password: $password){
+        access_token
+        token_type
+        expires_in
+        scope
+    }
+}
