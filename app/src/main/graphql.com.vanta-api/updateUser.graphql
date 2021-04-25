@@ -1,0 +1,10 @@
+mutation UpdateUser($user)(
+    updateUser(user: $user){
+        user_name
+        user_doc
+        user_phone
+        user_address
+        rh
+        register_date
+  }
+}
