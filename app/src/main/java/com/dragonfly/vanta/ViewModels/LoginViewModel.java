@@ -1,22 +1,19 @@
 package com.dragonfly.vanta.ViewModels;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
 
-import com.dragonfly.vanta.Model.Repository.Repository;
-import com.dragonfly.vanta.R;
+import com.dragonfly.vanta.Model.Repository.RepositoryAuth;
 
 
 public class LoginViewModel extends ViewModel {
 
-    private Repository loginRepository;
+    private RepositoryAuth loginRepository;
 
-    LoginViewModel() {
-        this.loginRepository = new Repository();
+    public LoginViewModel() {
+        this.loginRepository = new RepositoryAuth();
     }
 
 
@@ -45,6 +42,6 @@ public class LoginViewModel extends ViewModel {
 
     // A placeholder password validation check
     private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 5;
+        return password != null && password.trim().length() > 3;
     }
 }
