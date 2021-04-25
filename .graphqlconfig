@@ -1,6 +1,6 @@
 {
   "name": "Vanta-Schema",
-  "schemaPath": "app/src/main/graphql/com/vanta-api/schema.json",
+  "schemaPath": "app/src/main/graphql/com/vantapi/schema.json",
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
