@@ -1,4 +1,4 @@
-mutation UpdateUser($user)(
+mutation UpdateUser($user: infoInput!){
     updateUser(user: $user){
         user_name
         user_doc
