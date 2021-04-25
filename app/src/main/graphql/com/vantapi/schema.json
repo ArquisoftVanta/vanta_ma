@@ -155,7 +155,7 @@
               "deprecationReason": null
             },
             {
-              "name": "register_date",
+              "name": "registry_datetime",
               "description": null,
               "args": [],
               "type": {

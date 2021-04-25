@@ -14,10 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.dragonfly.vanta.Model.Repository.RepositoryProfile;
 import com.dragonfly.vanta.R;
+import com.dragonfly.vanta.ViewModels.ProfileViewModel;
 
 
 public class ProfileFragment extends Fragment {
+
+    private ProfileViewModel profileViewModel;
 
     private static final String TAG = "LogInternoPerfil";
 
@@ -33,6 +37,8 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+
+       // profileViewModel.getUserProfile("cdpinedao@unal.edu.co");
 
         TextView user_mail = (TextView) view.findViewById(R.id.user_mail);
         TextView registry_datetime = (TextView) getView().findViewById(R.id.registry_datetime);

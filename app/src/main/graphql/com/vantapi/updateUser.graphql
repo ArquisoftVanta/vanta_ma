@@ -1,10 +1,10 @@
-mutation UpdateUser($user: infoInput!){
-    updateUser(user: $user){
+mutation UpdateUser($user_mail: String!, $user: infoInput!){
+    updateUser(user_mail: $user_mail, user: $user){
         user_name
         user_doc
         user_phone
         user_address
         rh
-        register_date
+        registry_datetime
   }
 }
