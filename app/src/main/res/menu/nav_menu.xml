@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_menu_car"
         android:title="@string/menu_auto" />
 
+    <item
+        android:id="@+id/logOut"
+        android:icon="@drawable/ic_menu_car"
+        android:title="@string/menu_logout" />
+
 </menu>

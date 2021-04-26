@@ -7,13 +7,14 @@ import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.api.Error;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.dragonfly.vanta.LoginActivity;
 import com.vantapi.LoginUserMutation;
 import com.vantapi.RegisterUserMutation;
 import com.vantapi.type.RegisterInput;
 
 import org.jetbrains.annotations.NotNull;
+import java.util.concurrent.CompletableFuture;
 
-import java.util.List;
 
 import okhttp3.OkHttpClient;
 
@@ -29,28 +30,32 @@ public class RepositoryAuth {
             .build();
     }
 
-    public LoginUserMutation.Data gqlLoginUser(String username, String password){
-        final LoginUserMutation.Data[] res = new LoginUserMutation.Data[1];
+    public CompletableFuture<LoginUserMutation.Data> gqlLoginUser(String username, String password){
+        final CompletableFuture <LoginUserMutation.Data> res = new CompletableFuture<>();
         this.apolloClient.mutate(new LoginUserMutation(username, password))
                 .enqueue(new ApolloCall.Callback<LoginUserMutation.Data>() {
                     @Override
                     public void onResponse(@NotNull Response<LoginUserMutation.Data> response) {
                         if(response.hasErrors()){
-                            List<Error> errors = response.getErrors();
+                            String errors = "";
+                            for (Error e: response.getErrors()) { errors += e.toString(); }
+                            res.completeExceptionally(new ApolloException(errors));
                         }else{
-                            res[0] = response.getData();
+                            res.complete(response.getData());
                         }
                     }
                     @Override
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println(e);
                         Log.e("Apollo", "Error", e);
+                        res.completeExceptionally(e);
                     }
                 });
 
-        return res[0];
+        return res;
     }
 
+    /*
     public void gqlRegisterUser(RegisterInput registerInput){
         this.apolloClient.mutate(new RegisterUserMutation(registerInput))
                 .enqueue(new ApolloCall.Callback<RegisterUserMutation.Data>() {
@@ -68,5 +73,6 @@ public class RepositoryAuth {
                         Log.e("Apollo", "Error", e);
                     }
                 });
-    }
+    }*/
+
 }
