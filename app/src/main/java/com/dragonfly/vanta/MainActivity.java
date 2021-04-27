@@ -15,6 +15,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.ui.NavigationUI;
@@ -24,6 +25,7 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
+    TextView mailText;
     Toolbar toolbar;
     NavigationView navigationView;
     NavController navController;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
             logoutItem = navigationView.getMenu().findItem(R.id.logOut);
+            mailText = navigationView.getHeaderView(0).findViewById(R.id.textViewMail);
         toolbar = findViewById(R.id.toolbar);
 
         this.setSupportActionBar(toolbar);
@@ -45,10 +48,13 @@ public class MainActivity extends AppCompatActivity {
         //Setup automatic fragment navigation from the xml settings
         navController = Navigation.findNavController(this, R.id.nav_fragment);
         NavigationUI.setupWithNavController(navigationView, navController);
+        String mail = getMail();
+        mailText.setText(mail);
 
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.abrir, R.string.cerrar);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
+
 
         //Add extra actions for navigation items
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
@@ -75,6 +81,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private String getMail(){
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("jwt", Context.MODE_PRIVATE);
+        String mail = sharedPref.getString("email", "example@mail.com");
+        return mail;
     }
 
 
