@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,14 +16,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.dragonfly.vanta.MainActivity;
 import com.dragonfly.vanta.Model.Repository.RepositoryProfile;
 import com.dragonfly.vanta.R;
 import com.dragonfly.vanta.ViewModels.ProfileViewModel;
+import com.vantapi.UserByIdQuery;
 
 
 public class ProfileFragment extends Fragment {
 
     private ProfileViewModel profileViewModel;
+    private TextView user_mail;
+    private Button button;
+    private TextView registry_datetime;
+    private EditText user_name;
+    private EditText user_doc;
+    private EditText user_phone;
+    private EditText user_address;
+    private EditText rh;
 
     private static final String TAG = "LogInternoPerfil";
 
@@ -32,32 +44,43 @@ public class ProfileFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "Vista perfil iniciada");
         // Inflate the layout for this fragment
+
+
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
 
-       // profileViewModel.getUserProfile("cdpinedao@unal.edu.co");
+        profileViewModel = new ViewModelProvider(requireActivity()).get(ProfileViewModel.class);
 
-        TextView user_mail = (TextView) view.findViewById(R.id.user_mail);
-        TextView registry_datetime = (TextView) getView().findViewById(R.id.registry_datetime);
-        EditText user_name = (EditText) getView().findViewById(R.id.user_name);
-        EditText user_doc = (EditText) getView().findViewById(R.id.user_doc);
-        EditText user_phone = (EditText) getView().findViewById(R.id.user_phone);
-        EditText user_address = (EditText) getView().findViewById(R.id.user_address);
-        EditText rh = (EditText) getView().findViewById(R.id.rh);
+        String mail = ((MainActivity) getActivity()).getMail();
+        profileViewModel.getUserProfile(mail);
+
+        user_mail = (TextView) view.findViewById(R.id.user_mail);
+        registry_datetime = (TextView) view.findViewById(R.id.registry_datetime);
+        user_name = (EditText) view.findViewById(R.id.user_name);
+        user_doc = (EditText) getView().findViewById(R.id.user_doc);
+        user_phone = (EditText) getView().findViewById(R.id.user_phone);
+        user_address = (EditText) getView().findViewById(R.id.user_address);
+        rh = (EditText) getView().findViewById(R.id.rh);
+
+        user_mail.setText(mail);
+
+        profileViewModel.getUserUIData().observe(getActivity(), new Observer<UserByIdQuery.Data>() {
+            @Override
+            public void onChanged(UserByIdQuery.Data data) {
+                registry_datetime.setText(data.userById().registry_datetime());
+                user_name.setText(data.userById().user_name());
+                user_doc.setText(data.userById().user_doc());
+                user_phone.setText(data.userById().user_phone());
+                user_address.setText(data.userById().user_address());
+                rh.setText(data.userById().rh());
+            }
+        });
 
 
-        user_mail.setText("cdpinedao@unal.edu.co");
-        registry_datetime.setText("2021-04-25 01:21:29");
-        user_name.setText("Cesar David Pineda Osorio");
-        user_doc.setText("1032494428");
-        user_phone.setText("3166226220");
-        user_address.setText("Calle 75 # 27-20 Apto 400");
-        rh.setText("O+");
-
-        Button button = (Button) view.findViewById(R.id.updateInfo);
+        button = (Button) view.findViewById(R.id.updateInfo);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,13 +98,6 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+
+
 }
-
-    /*Button btn = (Button) view.findViewById(R.id.updateInfo);
-
-        btn.setOnClickListener(new View.OnClickListener() {
-@Override
-public void onClick(View v) {
-        updateProfile(v);
-        }
-        });*/

@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    private String getMail(){
+    public String getMail(){
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("jwt", Context.MODE_PRIVATE);
         String mail = sharedPref.getString("email", "example@mail.com");
         return mail;
