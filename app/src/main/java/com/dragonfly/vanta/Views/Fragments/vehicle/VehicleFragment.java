@@ -9,13 +9,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.dragonfly.vanta.R;
 
 public class VehicleFragment extends Fragment {
 
     public static VehicleFragment newInstance() { return new VehicleFragment(); }
+
+    ImageView picture;
+    ListView vehicleData;
+    ArrayAdapter<String> arrayAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container,
@@ -28,6 +34,10 @@ public class VehicleFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        picture = (ImageView) view.findViewById(R.id.vehicleImage);
+        vehicleData = (ListView) view.findViewById(R.id.vehicleInfo);
+
+        picture.setImageResource(R.drawable.car);
 
 
     }

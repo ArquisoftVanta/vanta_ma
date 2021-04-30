@@ -1,0 +1,8 @@
+query GetVehicles{
+    getVehicles{
+        owner
+        license_plate
+        brand
+        year
+    }
+}
