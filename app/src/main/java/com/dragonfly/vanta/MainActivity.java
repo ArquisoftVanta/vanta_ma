@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
-
         //Add extra actions for navigation items
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    private String getMail(){
+    public String getMail(){
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("jwt", Context.MODE_PRIVATE);
         String mail = sharedPref.getString("email", "example@mail.com");
         return mail;
