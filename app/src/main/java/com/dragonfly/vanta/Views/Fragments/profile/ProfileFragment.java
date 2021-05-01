@@ -97,16 +97,18 @@ public class ProfileFragment extends Fragment {
                         .user_phone(user_phone.getText().toString()).build();
 
                 profileViewModel.updateUserProfile(mail, toUpdate);
+
+                profileViewModel.getToastObserver().observe(getActivity(), new Observer<String>() {
+                    @Override
+                    public void onChanged(String message) {
+                        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
 
         });
 
-        profileViewModel.getToastObserver().observe(getActivity(), new Observer<String>() {
-            @Override
-            public void onChanged(String message) {
-                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-            }
-        });
 
         super.onViewCreated(view, savedInstanceState);
     }
