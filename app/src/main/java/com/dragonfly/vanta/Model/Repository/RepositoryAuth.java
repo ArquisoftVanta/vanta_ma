@@ -55,24 +55,28 @@ public class RepositoryAuth {
         return res;
     }
 
-    /*
+
     public void gqlRegisterUser(RegisterInput registerInput){
+        final CompletableFuture<RegisterUserMutation.Data> res = new CompletableFuture<>();
         this.apolloClient.mutate(new RegisterUserMutation(registerInput))
                 .enqueue(new ApolloCall.Callback<RegisterUserMutation.Data>() {
                     @Override
                     public void onResponse(@NotNull Response<RegisterUserMutation.Data> response) {
-                        System.out.println(response);
-                        System.out.println(response.getData());
-                        System.out.println(response.getData().registerUser());
-                        System.out.println(response.getData().registerUser().__typename());
-                        System.out.println(response.getData().registerUser().toString());
+                        if(response.hasErrors()){
+                            String errors = "";
+                            for (Error e: response.getErrors()) { errors += e.toString(); }
+                            res.completeExceptionally(new ApolloException(errors));
+                        }else{
+                            res.complete(response.getData());
+                        }
                     }
                     @Override
                     public void onFailure(@NotNull ApolloException e) {
                         System.out.println(e);
                         Log.e("Apollo", "Error", e);
+                        res.completeExceptionally(e);
                     }
                 });
-    }*/
+    }
 
 }

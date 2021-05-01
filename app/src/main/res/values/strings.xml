@@ -6,6 +6,16 @@
     <string name="hist_conds">VIAJES REALIZADOS</string>
     <string name="new_pasj">NUEVA POSTULACION</string>
     <string name="hist_pasj">POSTULACIONES REALIZADAS</string>
+    <string name="regs_user">Registrar Nuevo Usuario</string>
+
+    <string name="reg_name">Nombre</string>
+    <string name="reg_mail">Correo</string>
+    <string name="reg_doc">Documento</string>
+    <string name="reg_tel">Telefono</string>
+    <string name="reg_pss">Contraseña</string>
+    <string name="reg_adr">Direccion</string>
+
+
 
     <string name="new_p_org">Origen</string>
     <string name="new_p_dst">Destino</string>
