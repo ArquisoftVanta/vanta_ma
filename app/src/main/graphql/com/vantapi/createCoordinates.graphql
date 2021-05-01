@@ -1,0 +1,11 @@
+mutation CreateCoordinates($coor: coordinatesInput!){
+    createCoordinates(coordinate: $coor){
+        coordinates_id
+        request
+        lat
+        lng
+        address
+        type
+        order
+    }
+}
