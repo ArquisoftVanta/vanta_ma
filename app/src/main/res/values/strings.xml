@@ -7,6 +7,12 @@
     <string name="new_pasj">NUEVA POSTULACION</string>
     <string name="hist_pasj">POSTULACIONES REALIZADAS</string>
 
+    <string name="new_p_org">Origen</string>
+    <string name="new_p_dst">Destino</string>
+    <string name="new_p_hra">Hora</string>
+    <string name="new_p_fch">Fecha</string>
+    <string name="new_p_bts">Guardar Ruta</string>
+
     <string name="menu_incio">Inicio</string>
     <string name="menu_perfil">Perfil</string>
     <string name="menu_auto">Automovil</string>
