@@ -1,0 +1,11 @@
+mutation CreateRequest($request: requestInput!){
+    createRequest(request: $request){
+        request_id
+        user_id
+        service_id
+        date
+        time
+        active
+        registry_request
+    }
+}

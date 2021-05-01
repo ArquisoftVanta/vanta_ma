@@ -17,10 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="TextView"
+            android:text="@string/new_pasj"
             android:textAlignment="center"
-            android:textSize="24sp"
-            tools:text="@string/new_pasj" />
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/editTextOrigen"
@@ -50,6 +49,7 @@
             android:inputType="date" />
 
         <EditText
+            android:id="@+id/editTextHora"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
