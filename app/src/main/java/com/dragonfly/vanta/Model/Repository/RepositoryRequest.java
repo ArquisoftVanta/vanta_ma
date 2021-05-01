@@ -9,6 +9,8 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.vantapi.CreateRequestMutation;
 import com.vantapi.LoginUserMutation;
+import com.vantapi.NewRequestMutation;
+import com.vantapi.type.CoordinatesInput;
 import com.vantapi.type.RequestInput;
 
 import org.jetbrains.annotations.NotNull;
@@ -34,6 +36,31 @@ public class RepositoryRequest {
                 .enqueue(new ApolloCall.Callback<CreateRequestMutation.Data>() {
                     @Override
                     public void onResponse(@NotNull Response<CreateRequestMutation.Data> response) {
+                        if(response.hasErrors()){
+                            String errors = "";
+                            for (Error e: response.getErrors()) { errors += e.toString(); }
+                            res.completeExceptionally(new ApolloException(errors));
+                        }else{
+                            res.complete(response.getData());
+                        }
+                    }
+                    @Override
+                    public void onFailure(@NotNull ApolloException e) {
+                        System.out.println(e);
+                        Log.e("Apollo", "Error", e);
+                        res.completeExceptionally(e);
+                    }
+                });
+
+        return res;
+    }
+
+    public CompletableFuture<NewRequestMutation.Data> gqlNewReq(CoordinatesInput c1, CoordinatesInput c2, RequestInput req){
+        final CompletableFuture<NewRequestMutation.Data> res = new CompletableFuture<>();
+        this.apolloClient.mutate(new NewRequestMutation(c1, c2, req))
+                .enqueue(new ApolloCall.Callback<NewRequestMutation.Data>() {
+                    @Override
+                    public void onResponse(@NotNull Response<NewRequestMutation.Data> response) {
                         if(response.hasErrors()){
                             String errors = "";
                             for (Error e: response.getErrors()) { errors += e.toString(); }

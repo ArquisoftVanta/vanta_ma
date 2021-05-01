@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
@@ -21,23 +22,46 @@
             android:textAlignment="center"
             android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/editTextOrigen"
+        <TextView
+            android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:ems="10"
-            android:hint="@string/new_p_org"
-            android:inputType="textPersonName" />
+            android:paddingStart="16dp"
+            android:paddingEnd="0dp"
+            android:text="@string/new_p_org"
+            android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/editTextDestino"
+        <fragment
+            android:id="@+id/autocomplete_fragment_org"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:ems="10"
-            android:hint="@string/new_p_dst"
-            android:inputType="textPersonName" />
+            android:layout_margin="8dp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="0dp"
+            android:text="@string/new_p_dst"
+            android:textSize="18sp" />
+
+        <fragment
+            android:id="@+id/autocomplete_fragment_dst"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="0dp"
+            android:text="@string/new_p_fch"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/editTextDate"
@@ -45,8 +69,16 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:ems="10"
-            android:hint="@string/new_p_fch"
             android:inputType="date" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="0dp"
+            android:text="@string/new_p_hra"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/editTextHora"
@@ -54,7 +86,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:ems="10"
-            android:hint="@string/new_p_hra"
             android:inputType="time" />
 
         <Button

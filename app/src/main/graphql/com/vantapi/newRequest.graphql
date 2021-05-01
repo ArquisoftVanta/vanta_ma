@@ -1,0 +1,11 @@
+mutation NewRequest($coor1: coordinatesInput!, $coor2: coordinatesInput!, $req: requestInput!){
+    newRequest(coor1: $coor1, coor2: $coor2, req: $req){
+        request_id
+        user_id
+        service_id
+        date
+        time
+        active
+        registry_request
+    }
+}
