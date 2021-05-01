@@ -25,7 +25,7 @@ public class RepositoryAuth {
 
     public RepositoryAuth() {
         this.apolloClient = ApolloClient.builder()
-            .serverUrl("http://192.168.43.3:8000/graphql/endpoint")
+            .serverUrl("http://192.168.2.140:8000/graphql/endpoint")
             .okHttpClient(okHttp)
             .build();
     }

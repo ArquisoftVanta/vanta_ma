@@ -9,6 +9,7 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.vantapi.UpdateUserMutation;
 import com.vantapi.UserByIdQuery;
+import com.vantapi.type.InfoInput;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -21,7 +22,7 @@ public class RepositoryProfile {
     public RepositoryProfile(){
 
         this.apolloClient = ApolloClient.builder()
-                .serverUrl("http://192.168.43.3:8000/graphql/endpoint")
+                .serverUrl("http://192.168.2.140:8000/graphql/endpoint")
                 .build();
     }
 
@@ -32,6 +33,35 @@ public class RepositoryProfile {
 
             @Override
             public void onResponse(@NotNull Response<UserByIdQuery.Data> response) {
+
+                if (response.hasErrors()){
+                    String errors = "";
+                    for (Error e: response.getErrors()) { errors += e.toString(); }
+                    userData.completeExceptionally(new ApolloException(errors));
+                }else{
+                    userData.complete(response.getData());
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NotNull ApolloException e) {
+                System.out.println(e);
+                Log.e("Apollo", "Error", e);
+                userData.completeExceptionally(e);
+            }
+
+        });
+        return userData;
+    }
+
+    public CompletableFuture<UpdateUserMutation.Data> gqlUpdateProfile(String user_mail, InfoInput updateData){
+
+        final CompletableFuture<UpdateUserMutation.Data> userData  = new CompletableFuture<>();
+        this.apolloClient.mutate(new UpdateUserMutation(user_mail, updateData)).enqueue(new ApolloCall.Callback<UpdateUserMutation.Data>() {
+
+            @Override
+            public void onResponse(@NotNull Response<UpdateUserMutation.Data> response) {
 
                 if (response.hasErrors()){
                     String errors = "";

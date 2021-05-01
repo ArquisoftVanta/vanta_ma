@@ -6,5 +6,6 @@ query userById($user_mail: String!){
         user_address
         rh
         registry_datetime
+        picture
     }
 }

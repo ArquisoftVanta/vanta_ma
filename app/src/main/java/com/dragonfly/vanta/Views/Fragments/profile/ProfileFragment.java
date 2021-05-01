@@ -15,12 +15,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dragonfly.vanta.MainActivity;
 import com.dragonfly.vanta.Model.Repository.RepositoryProfile;
 import com.dragonfly.vanta.R;
 import com.dragonfly.vanta.ViewModels.ProfileViewModel;
 import com.vantapi.UserByIdQuery;
+import com.vantapi.type.InfoInput;
 
 
 public class ProfileFragment extends Fragment {
@@ -34,6 +36,8 @@ public class ProfileFragment extends Fragment {
     private EditText user_phone;
     private EditText user_address;
     private EditText rh;
+    private String picture;
+    private InfoInput toUpdate;
 
     private static final String TAG = "LogInternoPerfil";
 
@@ -44,8 +48,6 @@ public class ProfileFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "Vista perfil iniciada");
         // Inflate the layout for this fragment
-
-
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
@@ -54,7 +56,7 @@ public class ProfileFragment extends Fragment {
 
         profileViewModel = new ViewModelProvider(requireActivity()).get(ProfileViewModel.class);
 
-        String mail = ((MainActivity) getActivity()).getMail();
+        final String mail = ((MainActivity) getActivity()).getMail();
         profileViewModel.getUserProfile(mail);
 
         user_mail = (TextView) view.findViewById(R.id.user_mail);
@@ -76,6 +78,7 @@ public class ProfileFragment extends Fragment {
                 user_phone.setText(data.userById().user_phone());
                 user_address.setText(data.userById().user_address());
                 rh.setText(data.userById().rh());
+                picture = data.userById().picture();
             }
         });
 
@@ -84,16 +87,26 @@ public class ProfileFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText rh = (EditText) getView().findViewById(R.id.rh);
-                EditText user_doc = (EditText) getView().findViewById(R.id.user_doc);
-                String editTextValue = user_doc.getText().toString();
-                rh.setText(editTextValue);
+
+                toUpdate = InfoInput.builder().rh(rh.getText().toString())
+                        .picture(picture)
+                        .user_address(user_address.getText().toString())
+                        .user_doc(user_doc.getText().toString())
+                        .user_mail(user_mail.getText().toString())
+                        .user_name(user_name.getText().toString())
+                        .user_phone(user_phone.getText().toString()).build();
+
+                profileViewModel.updateUserProfile(mail, toUpdate);
+            }
+
+        });
+
+        profileViewModel.getToastObserver().observe(getActivity(), new Observer<String>() {
+            @Override
+            public void onChanged(String message) {
+                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
             }
         });
-        //
-
-        //Log.d(TAG, editTextValue);
-        //System.out.println(editTextValue);
 
         super.onViewCreated(view, savedInstanceState);
     }
