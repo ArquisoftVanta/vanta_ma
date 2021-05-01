@@ -1,0 +1,11 @@
+query GetRequestActive($active: String!){
+    getRequestActive(active: $active){
+        request_id
+        user_id
+        service_id
+        date
+        time
+        active
+        registry_request
+    }
+}
