@@ -32,6 +32,8 @@ import com.vantapi.type.RegisterInput;
 import com.vantapi.type.RequestInput;
 
 import java.lang.reflect.Array;
+import java.security.Timestamp;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -59,6 +61,7 @@ public class NewPostFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+       // final LocalDate localDate = LocalDate.now();
 
         requestViewModel = new ViewModelProvider(requireActivity()).get(RequestViewModel.class);
 
@@ -77,11 +80,13 @@ public class NewPostFragment extends Fragment {
                 boolean notEmptyCoordinates = !coorOrg.address().isEmpty() && !coorDst.address().isEmpty();
                 boolean notEmptyInputs = !dateEditTxt.getText().toString().isEmpty() && !timeEditTxt.getText().toString().isEmpty();
                 if(notEmptyCoordinates && notEmptyInputs){
-                    requestInput.builder()
+
+                    requestInput = RequestInput.builder()
                             .user_id(mail)
                             .date(dateEditTxt.getText().toString())
                             .time(timeEditTxt.getText().toString())
                             .active("false")
+                            .registry_request((dateEditTxt.getText().toString() +"T"+ timeEditTxt.getText().toString()+":00Z")                            )
                             .build();
 
                     requestViewModel.newRequest(coorOrg, coorDst, requestInput);
