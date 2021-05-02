@@ -26,5 +26,7 @@
     <string name="invalid_format">Formato de Correo o Contraseña Erroneos</string>
     <string name="login_failed">Error de Autenticacion o Servidor</string>
 
+    <string name="introVehicle">Tu vehiculo</string>
+    <string name="nonVehicle">No tienes un vehiculo registrado</string>
 
 </resources>

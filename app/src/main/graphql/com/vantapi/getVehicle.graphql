@@ -1,8 +1,16 @@
 query GetVehicle($id: Int!){
     getVehicle(id: $id){
-        owner
         license_plate
         brand
+        capacity
+        service_type
         year
+        body
+        soat_exp
+        vehicle_type
+        model
+        engine
+        color
+        gas_type
     }
 }

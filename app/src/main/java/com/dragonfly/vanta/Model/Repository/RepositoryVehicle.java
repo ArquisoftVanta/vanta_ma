@@ -23,7 +23,7 @@ public class RepositoryVehicle {
 
     private ApolloClient apolloClient;
     private OkHttpClient okHttp = new OkHttpClient().newBuilder().build();
-    int id;
+    int id = 1;
 
     public RepositoryVehicle() {
         this.apolloClient = ApolloClient.builder()

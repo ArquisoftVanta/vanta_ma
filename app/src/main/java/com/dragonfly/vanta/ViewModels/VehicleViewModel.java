@@ -2,6 +2,7 @@ package com.dragonfly.vanta.ViewModels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.dragonfly.vanta.Model.Repository.RepositoryVehicle;
 import com.vantapi.DeleteVehicleMutation;
@@ -14,14 +15,26 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-public class VehicleViewModel {
+public class VehicleViewModel extends ViewModel {
     private RepositoryVehicle vehicleRepository;
     private MutableLiveData<GetVehiclesQuery.Data> vehiclesInformation = new MutableLiveData<>();
     private MutableLiveData<GetVehicleQuery.Data> vehicleInformation = new MutableLiveData<>();
     private MutableLiveData<DeleteVehicleMutation.Data> deletedVehicle = new MutableLiveData<>();
 
-    public LiveData<GetVehiclesQuery.Data> getVsD(){ return vehiclesInformation; }
-    public LiveData<DeleteVehicleMutation.Data> getDeleted(){ return deletedVehicle; }
+//    public LiveData<GetVehiclesQuery.Data> getVsD(){ return vehiclesInformation; }
+//    public LiveData<DeleteVehicleMutation.Data> getDeleted(){ return deletedVehicle; }
+
+    public LiveData<GetVehiclesQuery.Data> getVehiclesInformation() {
+        return vehiclesInformation;
+    }
+
+    public LiveData<GetVehicleQuery.Data> getVehicleInformation() {
+        return vehicleInformation;
+    }
+
+    public LiveData<DeleteVehicleMutation.Data> getDeletedVehicle() {
+        return deletedVehicle;
+    }
 
     public VehicleViewModel () { this.vehicleRepository =  new RepositoryVehicle(); }
 
