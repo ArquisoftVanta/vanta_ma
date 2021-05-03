@@ -71,11 +71,14 @@ public class RegisterFragment extends DialogFragment {
                             .userDoc(editDoc.getText().toString())
                             .userPhone(editPhone.getText().toString())
                             .password(editPass.getText().toString())
+                            .picture("")
+                            .rh("")
+                            .registryDatetime("")
                             .build();
                     getDialog().dismiss();
                     registerViewModel.registerUser(registerInput);
                 }else{
-                    Toast.makeText(getActivity(), "Se deben llenar todos los datos rqueridos", Toast.LENGTH_LONG);
+                    Toast.makeText(getActivity(), "Se deben llenar todos los datos requeridos", Toast.LENGTH_LONG);
                 }
             }
         });
