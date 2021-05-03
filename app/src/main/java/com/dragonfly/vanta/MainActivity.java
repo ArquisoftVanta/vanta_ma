@@ -24,6 +24,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.ui.NavigationUI;
 
 import com.dragonfly.vanta.ViewModels.ChatViewModel;
+import com.dragonfly.vanta.Views.Fragments.chat.ChatListFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.vantapi.ChatByUserQuery;
@@ -92,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
         chatViewModel.getChatData().observe(this, new Observer<ChatByUserQuery.Data>() {
             @Override
             public void onChanged(ChatByUserQuery.Data data) {
-                
+                ChatListFragment chatList = new ChatListFragment(data, mail);
+                chatList.show(getSupportFragmentManager(), "ChatListDialog");
             }
         });
     }
