@@ -1,0 +1,8 @@
+mutation CreateVehicle ($vehicle: vehicleInput!){
+    createVehicle(vehicle: $vehicle){
+        model
+        year
+        owner
+        brand
+    }
+}
