@@ -1,0 +1,11 @@
+mutation createRequest($req: requestInput!){
+    createRequest(request: $req){
+        request_id
+        user_id
+        service_id
+        date
+        time
+        active
+        registry_request
+    }
+}

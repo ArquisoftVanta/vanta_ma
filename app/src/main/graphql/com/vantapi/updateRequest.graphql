@@ -1,0 +1,11 @@
+mutation UpdateRequest($req_id: Int!, $req_data: requestInput!){
+    updateRequest(request_id: $req_id, request: $req_data){
+        request_id
+        user_id
+        service_id
+        date
+        time
+        active
+        registry_request
+    }
+}

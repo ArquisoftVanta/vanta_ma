@@ -1,0 +1,12 @@
+query ChatByUser($user_id: String!){
+    chatByUser(user_id: $user_id){
+        _id
+        user1
+        user2
+        conversation{
+            sender
+            content
+            createdAt
+        }
+    }
+}
