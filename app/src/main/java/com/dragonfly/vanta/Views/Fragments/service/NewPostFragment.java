@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dragonfly.vanta.MainActivity;
@@ -44,6 +45,7 @@ public class NewPostFragment extends Fragment {
     private String mail;
 
     EditText dateEditTxt, timeEditTxt;
+    TextView orgTextView, dstTextView;
     Button createButton;
     AutocompleteSupportFragment orgFragment, dstFragment;
     private RequestViewModel requestViewModel;
@@ -68,11 +70,10 @@ public class NewPostFragment extends Fragment {
         createButton = view.findViewById(R.id.buttonCreateReq);
         dateEditTxt = view.findViewById(R.id.editTextDate);
         timeEditTxt = view.findViewById(R.id.editTextHora);
-
+        orgTextView = view.findViewById(R.id.textViewDirOrg);
+        dstTextView = view.findViewById(R.id.textViewDirDst);
 
         initializeGooglePlaces();
-
-
 
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +122,7 @@ public class NewPostFragment extends Fragment {
         orgFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(@NonNull Place place) {
+                orgTextView.setText(place.getAddress());
                 coorOrg = CoordinatesInput.builder()
                         .address(place.getAddress())
                         .lat(String.valueOf(place.getLatLng().latitude))
@@ -142,6 +144,7 @@ public class NewPostFragment extends Fragment {
         dstFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(@NonNull Place place) {
+                dstTextView.setText(place.getAddress());
                 coorDst = CoordinatesInput.builder()
                         .address(place.getAddress())
                         .lat(String.valueOf(place.getLatLng().latitude))

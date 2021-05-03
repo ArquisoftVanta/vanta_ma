@@ -10,8 +10,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.dragonfly.vanta.R;
 import com.vantapi.ChatByUserQuery;
@@ -56,6 +58,11 @@ public class ChatListFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
         chatNames = new ArrayList<>();
         //Fill array with names of conversations and present it in list view
+        if(chatData.chatByUser().isEmpty()){
+            chatNames.add("Usted no tiene ningun chat");
+        }else{
+
+        }
         for(ChatByUserQuery.ChatByUser chat : chatData.chatByUser()){
             if(chatUser.equals(chat.user1())){
                 chatNames.add(chat.user2());
@@ -67,5 +74,21 @@ public class ChatListFragment extends DialogFragment {
 
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, chatNames);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(!chatNames.get(position).equals("Usted no tiene ningun chat")){
+                    ChatByUserQuery.ChatByUser chat = chatData.chatByUser().get(position);
+                    String mes;
+                    if (chat.conversation().isEmpty()){
+                        mes = "Este chat esta vacio";
+                    }else{
+                        mes = "Chat con: " + chatNames.get(position) + " - Ultimo msj: " + chat.conversation().get(chat.conversation().size()-1).content();
+                    }
+                    Toast.makeText(getActivity(), mes, Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 }
