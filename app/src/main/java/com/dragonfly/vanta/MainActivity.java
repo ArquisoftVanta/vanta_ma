@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -14,21 +16,31 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.ui.NavigationUI;
 
+import com.dragonfly.vanta.ViewModels.ChatViewModel;
+import com.dragonfly.vanta.Views.Fragments.chat.ChatListFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.vantapi.ChatByUserQuery;
 
 public class MainActivity extends AppCompatActivity {
 
+    ChatViewModel chatViewModel;
     DrawerLayout drawerLayout;
+    TextView mailText;
     Toolbar toolbar;
     NavigationView navigationView;
     NavController navController;
     ActionBarDrawerToggle drawerToggle;
     MenuItem logoutItem;
+
+    FloatingActionButton floatChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +50,16 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
             logoutItem = navigationView.getMenu().findItem(R.id.logOut);
+            mailText = navigationView.getHeaderView(0).findViewById(R.id.textViewMail);
         toolbar = findViewById(R.id.toolbar);
-
         this.setSupportActionBar(toolbar);
+
 
         //Setup automatic fragment navigation from the xml settings
         navController = Navigation.findNavController(this, R.id.nav_fragment);
         NavigationUI.setupWithNavController(navigationView, navController);
+        final String mail = getMail();
+        mailText.setText(mail);
 
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.abrir, R.string.cerrar);
         drawerLayout.addDrawerListener(drawerToggle);
@@ -64,6 +79,24 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        //Chat configuration
+        floatChat = findViewById(R.id.floatingActionButton);
+        chatViewModel = new ViewModelProvider(this).get(ChatViewModel.class);
+
+        floatChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chatViewModel.getChatByUser(mail);
+            }
+        });
+        chatViewModel.getChatData().observe(this, new Observer<ChatByUserQuery.Data>() {
+            @Override
+            public void onChanged(ChatByUserQuery.Data data) {
+                ChatListFragment chatList = new ChatListFragment(data, mail);
+                chatList.show(getSupportFragmentManager(), "ChatListDialog");
+            }
+        });
     }
 
     private void logOut() {
@@ -75,6 +108,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public String getMail(){
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("jwt", Context.MODE_PRIVATE);
+        String mail = sharedPref.getString("email", "example@mail.com");
+        return mail;
     }
 
 

@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 
 import com.dragonfly.vanta.ViewModels.LoginViewModel;
+import com.dragonfly.vanta.Views.Fragments.login.RegisterFragment;
 import com.vantapi.LoginUserMutation;
 
 import java.util.concurrent.ExecutionException;
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
+        final Button signUpButton = findViewById(R.id.signup);
 
 
         //Button click will send data in TextBoxes to Auth Server
@@ -57,6 +59,13 @@ public class LoginActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+        });
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RegisterFragment fragment = new RegisterFragment();
+                fragment.show(getSupportFragmentManager(), "RegisterDialog");
             }
         });
 
@@ -72,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel.getJWT().observe(this, new Observer<LoginUserMutation.Data>() {
             @Override
             public void onChanged(LoginUserMutation.Data data) {
-                saveJwt(data.loginUser().access_token());
+                saveJwt(data.loginUser().access_token(), usernameEditText.getText().toString());
                 openMainApp();
             }
         });
@@ -80,10 +89,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //Save Token into shared preferences
-    void saveJwt(String jwt){
+    void saveJwt(String jwt, String mail){
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("jwt", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("token", jwt);
+        editor.putString("email", mail);
         editor.commit();
     }
 

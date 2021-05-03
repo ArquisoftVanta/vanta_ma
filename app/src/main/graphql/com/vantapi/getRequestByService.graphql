@@ -1,0 +1,11 @@
+query GetRequestByService($serv_id: Int!){
+    getRequestbyService(service_id: $serv_id){
+        request_id
+        user_id
+        service_id
+        date
+        time
+        active
+        registry_request
+    }
+}
