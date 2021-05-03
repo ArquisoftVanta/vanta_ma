@@ -30,8 +30,6 @@ public class VehicleFragment extends Fragment {
 
     public static VehicleFragment newInstance() { return new VehicleFragment(); }
     private VehicleViewModel vehicleModel;
-    String intro = "Tu vehiculo";
-
 
     ImageView picture;
     ListView vehicleData;
@@ -57,7 +55,7 @@ public class VehicleFragment extends Fragment {
         vehicleModel.getVehicleInformation().observe(getActivity(), new Observer<GetVehicleQuery.Data>() {
             @Override
             public void onChanged(GetVehicleQuery.Data data) {
-
+                    Log.d(TAG, "ENTRO");
 //                 Log.d(TAG, data.toString());
 //
 //                ArrayList<String> allInfo = new ArrayList<>();
@@ -77,9 +75,10 @@ public class VehicleFragment extends Fragment {
 //                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, allInfo);
 //                vehicleData.setAdapter(arrayAdapter);
 //////
-                if (!data.equals(null)){
+                if (data.getVehicle().license_plate()!=null){
 
                     infoMessage.setText("Tu vehiculo");
+                    picture.setImageResource(R.drawable.car);
 
                     ArrayList<String> allInfo = new ArrayList<>();
                     allInfo.add("Placa: " + data.getVehicle().license_plate());
@@ -97,8 +96,6 @@ public class VehicleFragment extends Fragment {
 
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, allInfo);
                     vehicleData.setAdapter(arrayAdapter);
-                }else{
-                    infoMessage.setText("No tienes un carro registrado");
                 }
 
             }

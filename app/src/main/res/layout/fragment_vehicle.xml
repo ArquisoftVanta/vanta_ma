@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".Views.Fragments.vehicle.VehicleFragment" >
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -22,7 +21,6 @@
                     android:id="@+id/promtedText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="11"
                     android:layout_marginTop="10dp"
                     android:text="@string/introVehicle"
                     android:textAlignment="center"
@@ -30,10 +28,11 @@
 
                 <ImageView
                     android:id="@+id/vehicleImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/car" />
+                    android:layout_width="288dp"
+                    android:layout_height="257dp"
+                    android:scaleType="centerInside"
+                    android:layout_gravity="center"
+                    android:src="@drawable/empty_car" />
             </LinearLayout>
 
             <LinearLayout
@@ -46,6 +45,4 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
-
-
 </FrameLayout>
