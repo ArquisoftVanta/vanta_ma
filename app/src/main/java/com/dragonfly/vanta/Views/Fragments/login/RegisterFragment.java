@@ -4,7 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dragonfly.vanta.R;
+import com.dragonfly.vanta.ViewModels.RegisterViewModel;
 import com.vantapi.RegisterUserMutation;
 import com.vantapi.type.RegisterInput;
 
@@ -23,8 +27,10 @@ import com.vantapi.type.RegisterInput;
  * Use the {@link RegisterFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RegisterFragment extends Fragment {
+public class RegisterFragment extends DialogFragment {
 
+    private final static String TAG = "RegisterDialog";
+    private RegisterViewModel registerViewModel;
     EditText editName, editMail, editPass, editPhone, editDoc, editAdress;
     Button buttonSignUp;
     RegisterInput registerInput;
@@ -50,6 +56,8 @@ public class RegisterFragment extends Fragment {
 
         buttonSignUp = view.findViewById(R.id.buttonRegister);
 
+        registerViewModel = new ViewModelProvider(requireActivity()).get(RegisterViewModel.class);
+
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,8 +72,8 @@ public class RegisterFragment extends Fragment {
                             .userPhone(editPhone.getText().toString())
                             .password(editPass.getText().toString())
                             .build();
-
-
+                    getDialog().dismiss();
+                    registerViewModel.registerUser(registerInput);
                 }else{
                     Toast.makeText(getActivity(), "Se deben llenar todos los datos rqueridos", Toast.LENGTH_LONG);
                 }
