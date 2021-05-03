@@ -83,7 +83,7 @@ public class NewPostFragment extends Fragment {
                             .time(timeEditTxt.getText().toString())
                             .active("false")
                             .build();
-
+                    
                     requestViewModel.newRequest(coorOrg, coorDst, requestInput);
                 }
             }

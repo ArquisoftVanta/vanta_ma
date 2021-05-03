@@ -7,7 +7,6 @@ import com.apollographql.apollo.ApolloClient;
 import com.apollographql.apollo.api.Error;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
-import com.dragonfly.vanta.LoginActivity;
 import com.vantapi.LoginUserMutation;
 import com.vantapi.RegisterUserMutation;
 import com.vantapi.type.RegisterInput;
@@ -56,7 +55,7 @@ public class RepositoryAuth {
     }
 
 
-    public void gqlRegisterUser(RegisterInput registerInput){
+    public CompletableFuture<RegisterUserMutation.Data> gqlRegisterUser(RegisterInput registerInput){
         final CompletableFuture<RegisterUserMutation.Data> res = new CompletableFuture<>();
         this.apolloClient.mutate(new RegisterUserMutation(registerInput))
                 .enqueue(new ApolloCall.Callback<RegisterUserMutation.Data>() {
@@ -77,6 +76,7 @@ public class RepositoryAuth {
                         res.completeExceptionally(e);
                     }
                 });
+        return res;
     }
 
 }
