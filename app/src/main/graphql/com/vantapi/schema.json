@@ -155,7 +155,7 @@
               "deprecationReason": null
             },
             {
-              "name": "register_date",
+              "name": "registry_datetime",
               "description": null,
               "args": [],
               "type": {
@@ -1077,7 +1077,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 }
               },
@@ -1324,7 +1324,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 }
               },
@@ -2109,7 +2109,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 }
               },
@@ -2165,7 +2165,7 @@
               "deprecationReason": null
             },
             {
-              "name": "valor",
+              "name": "service_value",
               "description": null,
               "args": [],
               "type": {
@@ -2181,7 +2181,7 @@
               "deprecationReason": null
             },
             {
-              "name": "cupos",
+              "name": "places",
               "description": null,
               "args": [],
               "type": {
@@ -2393,14 +2393,14 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "userid",
+              "name": "user_id",
               "description": null,
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 }
               },
@@ -2449,7 +2449,7 @@
               "defaultValue": null
             },
             {
-              "name": "valor",
+              "name": "service_value",
               "description": null,
               "type": {
                 "kind": "NON_NULL",
@@ -2463,7 +2463,7 @@
               "defaultValue": null
             },
             {
-              "name": "cupos",
+              "name": "places",
               "description": null,
               "type": {
                 "kind": "NON_NULL",
@@ -2502,14 +2502,14 @@
               "defaultValue": null
             },
             {
-              "name": "userid",
+              "name": "user_id",
               "description": null,
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 }
               },
@@ -2558,7 +2558,7 @@
               "defaultValue": null
             },
             {
-              "name": "valor",
+              "name": "service_value",
               "description": null,
               "type": {
                 "kind": "NON_NULL",
@@ -2572,7 +2572,7 @@
               "defaultValue": null
             },
             {
-              "name": "cupos",
+              "name": "places",
               "description": null,
               "type": {
                 "kind": "NON_NULL",
@@ -2920,14 +2920,14 @@
               "description": null,
               "args": [
                 {
-                  "name": "id",
+                  "name": "owner",
                   "description": null,
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "Int",
+                      "name": "String",
                       "ofType": null
                     }
                   },

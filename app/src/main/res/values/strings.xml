@@ -25,6 +25,7 @@
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_format">Formato de Correo o Contraseña Erroneos</string>
     <string name="login_failed">Error de Autenticacion o Servidor</string>
+    <string name="crea_tu_nueva_postulaci_n">Crea tu nueva postulación</string>
 
 
 </resources>

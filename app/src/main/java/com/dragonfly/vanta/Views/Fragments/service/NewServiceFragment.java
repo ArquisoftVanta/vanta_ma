@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 import com.dragonfly.vanta.R;
 
 public class NewServiceFragment extends Fragment {
+    private CoordinatesInput coorOrg, coorDst;
+    private RequestInput requestInput;
+    private String mail;
 
 
     public static NewServiceFragment newInstance() { return new NewServiceFragment(); }

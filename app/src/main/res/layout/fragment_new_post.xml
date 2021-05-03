@@ -5,16 +5,187 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Views.Fragments.service.NewPostFragment" >
+    android:background="#F0EEF4"
+    tools:context=".Views.Fragments.service.NewPostFragment"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fragmento Nueva Postulacion"
-        android:textSize="24sp"
+
+    <ScrollView
+        android:layout_width="354dp"
+        android:layout_height="648dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.153">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Crea tu nuevo viaje"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.097" />
+
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="135dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:contentDescription="TODO"
+                android:src="@drawable/ic_menu_car"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.238" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Lugar de salida"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.097" />
+
+
+            <EditText
+                android:id="@+id/lugarDeSalida"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="Buscar"
+                android:inputType="textPersonName" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Lugar de llegada"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.097" />
+
+            <EditText
+                android:id="@+id/lugarDeLlegada"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="Buscar"
+                android:inputType="textPersonName" />
+
+            <TextView
+
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+
+                android:text="Fecha"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.097" />
+
+            <EditText
+
+                android:id="@+id/fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="dd-mm-yy"
+                android:inputType="date"
+                tools:layout_editor_absoluteX="260dp"
+                tools:layout_editor_absoluteY="1010dp" />
+
+            <TextView
+
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+
+                android:text="Hora"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.097" />
+
+            <EditText
+                android:id="@+id/hora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="00:00:00"
+                android:inputType="time"
+                tools:layout_editor_absoluteX="25dp"
+                tools:layout_editor_absoluteY="901dp" />
+
+            <EditText
+                android:id="@+id/valor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Valor"
+
+                tools:layout_editor_absoluteX="25dp"
+                tools:layout_editor_absoluteY="901dp" />
+
+            <Button
+                android:id="@+id/escogerPasajeros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Escoger Pasajeros" />
+
+            <Button
+                android:id="@+id/escogerVehiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Escoger Vehiculo" />
+
+            <Button
+                android:id="@+id/ordernarRuta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ordenar Ruta" />
+
+            <Button
+                android:id="@+id/crearServicio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Crear Servicio" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
