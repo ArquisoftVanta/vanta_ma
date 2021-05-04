@@ -22,7 +22,7 @@ public class RepositoryProfile {
     public RepositoryProfile(){
 
         this.apolloClient = ApolloClient.builder()
-                .serverUrl("http://192.168.2.140:8000/graphql/endpoint")
+                .serverUrl("http://10.0.2.2:8000/graphql/endpoint")
                 .build();
     }
 
