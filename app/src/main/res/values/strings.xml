@@ -30,6 +30,7 @@
 
     <string name="abrir">Abrir</string>
     <string name="cerrar">Cerrar</string>
+    <string name="fragmento_perfil">Fragmento Perfil</string>
 
     <string name="title_activity_login">Ingresar</string>
     <string name="prompt_email">Correo</string>
