@@ -24,14 +24,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:scaleType="centerCrop"
-                android:src="@drawable/passenger" />
+                android:src="@drawable/driver" />
 
             <TextView
                 android:id="@+id/textViewPs"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="8"
-                android:text="@string/pasajeros"
+                android:text="@string/conductores"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -49,14 +49,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:scaleType="centerCrop"
-                android:src="@drawable/driver" />
+                android:src="@drawable/passenger" />
 
             <TextView
                 android:id="@+id/textViewCn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="8"
-                android:text="@string/conductores"
+                android:text="@string/pasajeros"
                 android:textAlignment="center"
                 android:textSize="24sp" />
         </LinearLayout>

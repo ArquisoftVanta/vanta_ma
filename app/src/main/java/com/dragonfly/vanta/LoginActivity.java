@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 
 import com.dragonfly.vanta.ViewModels.LoginViewModel;
+import com.dragonfly.vanta.Views.Fragments.login.RegisterFragment;
 import com.vantapi.LoginUserMutation;
 
 import java.util.concurrent.ExecutionException;
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
+        final Button signUpButton = findViewById(R.id.signup);
 
 
         //Button click will send data in TextBoxes to Auth Server
@@ -57,6 +59,13 @@ public class LoginActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+        });
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RegisterFragment fragment = new RegisterFragment();
+                fragment.show(getSupportFragmentManager(), "RegisterDialog");
             }
         });
 

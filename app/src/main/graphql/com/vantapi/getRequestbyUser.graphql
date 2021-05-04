@@ -1,0 +1,11 @@
+query GetRequestByUser($user_id: String!){
+    getRequestbyUser(user_id: $user_id){
+        request_id
+        user_id
+        service_id
+        date
+        time
+        active
+        registry_request
+    }
+}

@@ -1,0 +1,11 @@
+query userById($user_mail: String!){
+    userById(user_id: $user_mail){
+        user_name
+        user_doc
+        user_phone
+        user_address
+        rh
+        registry_datetime
+        picture
+    }
+}

@@ -1,0 +1,11 @@
+query GetRequest($req_id: Int!){
+    getRequest(request_id: $req_id){
+        request_id
+        user_id
+        service_id
+        date
+        time
+        active
+        registry_request
+    }
+}

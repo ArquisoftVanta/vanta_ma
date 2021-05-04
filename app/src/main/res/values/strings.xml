@@ -6,6 +6,21 @@
     <string name="hist_conds">VIAJES REALIZADOS</string>
     <string name="new_pasj">NUEVA POSTULACION</string>
     <string name="hist_pasj">POSTULACIONES REALIZADAS</string>
+    <string name="regs_user">Registrar Nuevo Usuario</string>
+
+    <string name="reg_name">Nombre</string>
+    <string name="reg_mail">Correo</string>
+    <string name="reg_doc">Documento</string>
+    <string name="reg_tel">Telefono</string>
+    <string name="reg_pss">Contraseña</string>
+    <string name="reg_adr">Direccion</string>
+
+
+    <string name="new_p_org">Origen</string>
+    <string name="new_p_dst">Destino</string>
+    <string name="new_p_hra">Hora</string>
+    <string name="new_p_fch">Fecha</string>
+    <string name="new_p_bts">Guardar Ruta</string>
 
     <string name="menu_incio">Inicio</string>
     <string name="menu_perfil">Perfil</string>
@@ -15,17 +30,22 @@
 
     <string name="abrir">Abrir</string>
     <string name="cerrar">Cerrar</string>
+    <string name="fragmento_perfil">Fragmento Perfil</string>
 
     <string name="title_activity_login">Ingresar</string>
     <string name="prompt_email">Correo</string>
     <string name="prompt_password">Constraseña</string>
     <string name="action_sign_in">Ingresar</string>
-    <string name="action_sign_in_short">Ingresar</string>
+    <string name="action_sign_in_short">SignIn</string>
+    <string name="action_sign_up_short">Registrarse</string>
 
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_format">Formato de Correo o Contraseña Erroneos</string>
     <string name="login_failed">Error de Autenticacion o Servidor</string>
-    <string name="crea_tu_nueva_postulaci_n">Crea tu nueva postulación</string>
+    <string name="crea_tu_nueva_postulaci_n">Crea tu nueva postulación</string
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="introVehicle">No tienes un vehiculo registrado</string>
+    <string name="nonVehicle">No tienes un vehiculo registrado</string>
 
 </resources>
