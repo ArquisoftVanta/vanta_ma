@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dragonfly.vanta.R;
+import com.vantapi.type.CoordinatesInput;
+import com.vantapi.type.RequestInput;
 
 public class NewServiceFragment extends Fragment {
     private CoordinatesInput coorOrg, coorDst;

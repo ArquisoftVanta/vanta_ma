@@ -20,9 +20,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.dragonfly.vanta.MainActivity;
 import com.dragonfly.vanta.R;
 import com.dragonfly.vanta.ViewModels.VehicleViewModel;
 import com.vantapi.GetVehicleQuery;
+import com.vantapi.GetVehiclesQuery;
 
 import java.util.ArrayList;
 
@@ -50,6 +52,8 @@ public class VehicleFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        String mail = ((MainActivity) getActivity()).getMail();
         vehicleModel = new ViewModelProvider(requireActivity()).get(VehicleViewModel.class);
         picture = (ImageView) view.findViewById(R.id.vehicleImage);
 //        vehicleData = (ListView) view.findViewById(R.id.vehicleInfo);
@@ -68,14 +72,14 @@ public class VehicleFragment extends Fragment {
         gas = (TextView) view.findViewById(R.id.data13);
 
 
-        vehicleModel.getVehicle();
+        vehicleModel.getVehicle(mail);
 
-        vehicleModel.getVehicleInformation().observe(getActivity(), new Observer<GetVehicleQuery.Data>() {
+        vehicleModel.getVehicleInformation().observe(getActivity(), new Observer<GetVehiclesQuery.GetVehicle>() {
             @Override
-            public void onChanged(GetVehicleQuery.Data data) {
-                Log.d(TAG, data.getVehicle().toString());
+            public void onChanged(GetVehiclesQuery.GetVehicle data) {
+                Log.d(TAG, data.toString());
 
-                if (data.getVehicle().license_plate()!=null){
+                if (data.license_plate()!=null){
 
                     infoMessage.setText("Tu vehiculo");
                     picture.setImageResource(R.drawable.car);
@@ -93,18 +97,18 @@ public class VehicleFragment extends Fragment {
 //                    allInfo.add("Cilindraje: " + data.getVehicle().engine());
 //                    allInfo.add("Color: " + data.getVehicle().color());
 //                    allInfo.add("Tipo de combustible: " + data.getVehicle().gas_type());
-                    placa.setText("Placa: " + data.getVehicle().license_plate());
-                    marca.setText("Marca: " + data.getVehicle().brand());
-                    cupo.setText("No. de pasajeros: " + data.getVehicle().capacity());
-                    tServ.setText("Tipo de servicio: " + data.getVehicle().service_type());
-                    linea.setText("Linea : " + data.getVehicle().year());
-                    tCarro.setText("Tipo de carroceria: " + data.getVehicle().body());
-                    vSoat.setText("Fecha vencimiento SOAT: " + data.getVehicle().soat_exp());
-                    tVeh.setText("Tipo de vehiculo: " + data.getVehicle().vehicle_type());
-                    modelo.setText("Modelo: " + data.getVehicle().model());
-                    motor.setText("Cilindraje: " + data.getVehicle().engine());
-                    color.setText("Color: " + data.getVehicle().color());
-                    gas.setText("Tipo de combustible: " + data.getVehicle().gas_type());
+                    placa.setText("Placa: " + data.license_plate());
+                    marca.setText("Marca: " + data.brand());
+                    cupo.setText("No. de pasajeros: " + data.capacity());
+                    tServ.setText("Tipo de servicio: " + data.service_type());
+                    linea.setText("Linea : " + data.year());
+                    tCarro.setText("Tipo de carroceria: " + data.body());
+                    vSoat.setText("Fecha vencimiento SOAT: " + data.soat_exp());
+                    tVeh.setText("Tipo de vehiculo: " + data.vehicle_type());
+                    modelo.setText("Modelo: " + data.model());
+                    motor.setText("Cilindraje: " + data.engine());
+                    color.setText("Color: " + data.color());
+                    gas.setText("Tipo de combustible: " + data.gas_type());
 
 //                    Log.d(TAG, allInfo.toString());
 

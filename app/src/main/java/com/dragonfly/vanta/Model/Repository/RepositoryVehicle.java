@@ -15,6 +15,7 @@ import com.vantapi.LoginUserMutation;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import okhttp3.OkHttpClient;
@@ -105,6 +106,37 @@ public class RepositoryVehicle {
                     }
                 });
         return deletedVehicle;
+    }
+
+    public CompletableFuture<GetVehiclesQuery.GetVehicle> searchVehicle(final String mail){
+        final CompletableFuture<GetVehiclesQuery.GetVehicle> vehicleInfo = new CompletableFuture<>();
+        this.apolloClient.query(new GetVehiclesQuery())
+                .enqueue(new ApolloCall.Callback<GetVehiclesQuery.Data>() {
+                    @Override
+                    public void onResponse(@NotNull Response<GetVehiclesQuery.Data> response) {
+                        if (response.hasErrors()){
+                            String errors = "";
+                            for (Error e: response.getErrors()) { errors += e.toString(); }
+                            vehicleInfo.completeExceptionally(new ApolloException(errors));
+                        }else{
+                            List<GetVehiclesQuery.GetVehicle> vList = response.getData().getVehicles();
+
+                            for (GetVehiclesQuery.GetVehicle v: vList) {
+                                if(v.owner().equals(mail)){
+                                    vehicleInfo.complete(v);
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull ApolloException e) {
+                        System.out.println(e);
+                        Log.e("Apollo", "Error", e);
+                        vehicleInfo.completeExceptionally(e);
+                    }
+                });
+        return  vehicleInfo;
     }
 
 }

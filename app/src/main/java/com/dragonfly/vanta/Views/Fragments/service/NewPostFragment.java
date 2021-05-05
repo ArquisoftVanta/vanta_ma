@@ -107,7 +107,6 @@ public class NewPostFragment extends Fragment {
             public void onChanged(String s) { Toast.makeText(getActivity(), s, Toast.LENGTH_LONG); }
         });
     }
-
     private void initializeGooglePlaces() {
         List<Place.Field> places = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG);
 
