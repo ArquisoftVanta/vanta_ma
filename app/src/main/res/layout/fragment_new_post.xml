@@ -94,6 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:ems="10"
+            android:hint="yyyy-mm-dd"
             android:inputType="date" />
 
         <TextView
@@ -111,6 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:ems="10"
+            android:hint="00:00"
             android:inputType="time" />
 
         <Button

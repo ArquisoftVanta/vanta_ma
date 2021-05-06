@@ -116,5 +116,10 @@ public class MainActivity extends AppCompatActivity {
         return mail;
     }
 
+    public String getToken(){
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("jwt", Context.MODE_PRIVATE);
+        String token = sharedPref.getString("token", "example@mail.com");
+        return token;
+    }
 
 }

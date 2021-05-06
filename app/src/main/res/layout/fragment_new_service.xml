@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="dd-mm-yy"
+                android:hint="yyyy-mm-dd"
                 android:inputType="date"
                 tools:layout_editor_absoluteX="260dp"
                 tools:layout_editor_absoluteY="1010dp" />
@@ -157,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="00:00:00"
+                android:hint="00:00"
                 android:inputType="time"
                 tools:layout_editor_absoluteX="25dp"
                 tools:layout_editor_absoluteY="901dp" />

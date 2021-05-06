@@ -56,9 +56,9 @@ public class ProfileFragment extends Fragment {
 
         profileViewModel = new ViewModelProvider(requireActivity()).get(ProfileViewModel.class);
 
+        final String token = ((MainActivity) getActivity()).getToken();
+        profileViewModel.getUserProfile(token);
         final String mail = ((MainActivity) getActivity()).getMail();
-        profileViewModel.getUserProfile(mail);
-
         user_mail = (TextView) view.findViewById(R.id.user_mail);
         registry_datetime = (TextView) view.findViewById(R.id.registry_datetime);
         user_name = (EditText) view.findViewById(R.id.user_name);
@@ -67,7 +67,7 @@ public class ProfileFragment extends Fragment {
         user_address = (EditText) getView().findViewById(R.id.user_address);
         rh = (EditText) getView().findViewById(R.id.rh);
 
-        user_mail.setText(mail);
+
 
         profileViewModel.getUserUIData().observe(getActivity(), new Observer<UserByIdQuery.Data>() {
             @Override
@@ -79,6 +79,7 @@ public class ProfileFragment extends Fragment {
                 user_address.setText(data.userById().user_address());
                 rh.setText(data.userById().rh());
                 picture = data.userById().picture();
+                user_mail.setText(data.userById().user_name());
             }
         });
 
@@ -108,7 +109,6 @@ public class ProfileFragment extends Fragment {
             }
 
         });
-
 
         super.onViewCreated(view, savedInstanceState);
     }
