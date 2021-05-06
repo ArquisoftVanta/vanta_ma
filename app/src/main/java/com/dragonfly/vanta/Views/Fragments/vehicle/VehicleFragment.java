@@ -36,11 +36,7 @@ public class VehicleFragment extends Fragment {
     private VehicleViewModel vehicleModel;
 
     ImageView picture;
-//    ListView vehicleData;
     TextView infoMessage, placa, marca, cupo,tServ,linea,tCarro, vSoat, tVeh, modelo, motor, color, gas;
-//    ArrayList<String> allInfo;
-
-    ArrayAdapter<String> arrayAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container,
@@ -53,10 +49,9 @@ public class VehicleFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String mail = ((MainActivity) getActivity()).getMail();
+        final String mail = ((MainActivity) getActivity()).getMail();
         vehicleModel = new ViewModelProvider(requireActivity()).get(VehicleViewModel.class);
         picture = (ImageView) view.findViewById(R.id.vehicleImage);
-//        vehicleData = (ListView) view.findViewById(R.id.vehicleInfo);
         infoMessage = (TextView) view.findViewById(R.id.promtedText);
         placa = (TextView) view.findViewById(R.id.data2);
         marca = (TextView) view.findViewById(R.id.data3);
@@ -71,7 +66,6 @@ public class VehicleFragment extends Fragment {
         color = (TextView) view.findViewById(R.id.data12);
         gas = (TextView) view.findViewById(R.id.data13);
 
-
         vehicleModel.getVehicle(mail);
 
         vehicleModel.getVehicleInformation().observe(getActivity(), new Observer<GetVehiclesQuery.GetVehicle>() {
@@ -79,24 +73,11 @@ public class VehicleFragment extends Fragment {
             public void onChanged(GetVehiclesQuery.GetVehicle data) {
                 Log.d(TAG, data.toString());
 
-                if (data.license_plate()!=null){
+                if (data.owner().equals(mail)){
 
                     infoMessage.setText("Tu vehiculo");
                     picture.setImageResource(R.drawable.car);
 
-//                    allInfo = new ArrayList<>();
-//                    allInfo.add("Placa: " + data.getVehicle().license_plate());
-//                    allInfo.add("Marca: " + data.getVehicle().brand());
-//                    allInfo.add("No. de pasajeros: " + data.getVehicle().capacity());
-//                    allInfo.add("Tipo de servicio: " + data.getVehicle().service_type());
-//                    allInfo.add("Linea : " + data.getVehicle().year());
-//                    allInfo.add("Tipo de carroceria: " + data.getVehicle().body());
-//                    allInfo.add("Fecha vencimiento SOAT: " + data.getVehicle().soat_exp());
-//                    allInfo.add("Tipo de vehiculo: " + data.getVehicle().vehicle_type());
-//                    allInfo.add("Modelo: " + data.getVehicle().model());
-//                    allInfo.add("Cilindraje: " + data.getVehicle().engine());
-//                    allInfo.add("Color: " + data.getVehicle().color());
-//                    allInfo.add("Tipo de combustible: " + data.getVehicle().gas_type());
                     placa.setText("Placa: " + data.license_plate());
                     marca.setText("Marca: " + data.brand());
                     cupo.setText("No. de pasajeros: " + data.capacity());
@@ -110,10 +91,6 @@ public class VehicleFragment extends Fragment {
                     color.setText("Color: " + data.color());
                     gas.setText("Tipo de combustible: " + data.gas_type());
 
-//                    Log.d(TAG, allInfo.toString());
-
-//                    arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, allInfo);
-//                    vehicleData.setAdapter(arrayAdapter);
                 }
 
             }

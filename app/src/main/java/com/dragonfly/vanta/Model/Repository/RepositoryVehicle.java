@@ -112,6 +112,8 @@ public class RepositoryVehicle {
         final CompletableFuture<GetVehiclesQuery.GetVehicle> vehicleInfo = new CompletableFuture<>();
         this.apolloClient.query(new GetVehiclesQuery())
                 .enqueue(new ApolloCall.Callback<GetVehiclesQuery.Data>() {
+                    boolean haveCar = false;
+
                     @Override
                     public void onResponse(@NotNull Response<GetVehiclesQuery.Data> response) {
                         if (response.hasErrors()){
@@ -124,7 +126,11 @@ public class RepositoryVehicle {
                             for (GetVehiclesQuery.GetVehicle v: vList) {
                                 if(v.owner().equals(mail)){
                                     vehicleInfo.complete(v);
+                                    haveCar = true;
                                 }
+                            }
+                            if (!haveCar){
+                                vehicleInfo.complete(vList.get(0));
                             }
                         }
                     }

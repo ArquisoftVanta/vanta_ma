@@ -63,6 +63,8 @@ public class VehicleViewModel extends ViewModel {
             vehicleInformation.setValue(mInformation);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
             e.printStackTrace();
+        } catch (Error e){
+
         }
     }
 
