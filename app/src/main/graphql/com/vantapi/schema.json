@@ -2994,14 +2994,14 @@
               "description": null,
               "args": [
                 {
-                  "name": "owner",
+                  "name": "id",
                   "description": null,
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "String",
+                      "name": "Int",
                       "ofType": null
                     }
                   },
