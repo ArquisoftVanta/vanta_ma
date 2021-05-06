@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,12 +21,10 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import java.util.Arrays;
 import java.util.List;
 
-import com.vantapi.type.CoordinatesInput;
-import com.vantapi.type.RequestInput;
-
 
 public class NewServiceFragment extends Fragment {
     AutocompleteSupportFragment orgFragment, dstFragment;
+    TextView orgText, dstTxt;
 
 
 
@@ -41,6 +40,9 @@ public class NewServiceFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        orgText = view.findViewById(R.id.textViewOrg);
+        dstTxt = view.findViewById(R.id.textViewDst);
+
         initializeGooglePlaces();
     }
     private void initializeGooglePlaces() {
@@ -57,7 +59,7 @@ public class NewServiceFragment extends Fragment {
         orgFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(@NonNull Place place) {
-
+                orgText.setText(place.getAddress());
             }
             @Override
             public void onError(@NonNull Status status) {
@@ -71,7 +73,7 @@ public class NewServiceFragment extends Fragment {
         dstFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(@NonNull Place place) {
-
+                dstTxt.setText(place.getAddress());
             }
             @Override
             public void onError(@NonNull Status status) {
