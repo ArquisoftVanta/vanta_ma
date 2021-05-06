@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.dragonfly.vanta.R;
+
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
@@ -18,6 +19,10 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 
 import java.util.Arrays;
 import java.util.List;
+
+import com.vantapi.type.CoordinatesInput;
+import com.vantapi.type.RequestInput;
+
 
 public class NewServiceFragment extends Fragment {
     AutocompleteSupportFragment orgFragment, dstFragment;

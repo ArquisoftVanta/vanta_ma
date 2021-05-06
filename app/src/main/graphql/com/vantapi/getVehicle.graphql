@@ -1,5 +1,6 @@
 query GetVehicle($id: Int!){
     getVehicle(id: $id){
+        owner
         license_plate
         brand
         capacity

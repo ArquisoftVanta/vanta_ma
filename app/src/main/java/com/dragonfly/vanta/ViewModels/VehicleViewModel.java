@@ -18,7 +18,7 @@ import java.util.concurrent.TimeoutException;
 public class VehicleViewModel extends ViewModel {
     private RepositoryVehicle vehicleRepository;
     private MutableLiveData<GetVehiclesQuery.Data> vehiclesInformation = new MutableLiveData<>();
-    private MutableLiveData<GetVehicleQuery.Data> vehicleInformation = new MutableLiveData<>();
+    private MutableLiveData<GetVehiclesQuery.GetVehicle> vehicleInformation = new MutableLiveData<>();
     private MutableLiveData<DeleteVehicleMutation.Data> deletedVehicle = new MutableLiveData<>();
 
 //    public LiveData<GetVehiclesQuery.Data> getVsD(){ return vehiclesInformation; }
@@ -28,9 +28,7 @@ public class VehicleViewModel extends ViewModel {
         return vehiclesInformation;
     }
 
-    public LiveData<GetVehicleQuery.Data> getVehicleInformation() {
-        return vehicleInformation;
-    }
+    public LiveData<GetVehiclesQuery.GetVehicle> getVehicleInformation() { return vehicleInformation; }
 
     public LiveData<DeleteVehicleMutation.Data> getDeletedVehicle() {
         return deletedVehicle;
@@ -58,13 +56,15 @@ public class VehicleViewModel extends ViewModel {
         }
     }
 
-    public void getVehicle(){
-        CompletableFuture<GetVehicleQuery.Data> vehicleInfo = vehicleRepository.vehicleData();
+    public void getVehicle(String mail){
+        CompletableFuture<GetVehiclesQuery.GetVehicle> vehicleInfo = vehicleRepository.searchVehicle(mail);
         try {
-            GetVehicleQuery.Data mInformation = vehicleInfo.get(2L, TimeUnit.SECONDS);
+            GetVehiclesQuery.GetVehicle mInformation = vehicleInfo.get(2L, TimeUnit.SECONDS);
             vehicleInformation.setValue(mInformation);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
             e.printStackTrace();
+        } catch (Error e){
+
         }
     }
 
