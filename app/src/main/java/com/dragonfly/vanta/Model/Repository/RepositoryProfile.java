@@ -15,16 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class RepositoryProfile {
-
-    private ApolloClient apolloClient;
-
-    public RepositoryProfile(){
-
-        this.apolloClient = ApolloClient.builder()
-                .serverUrl("http://10.0.2.2:8000/graphql/endpoint")
-                .build();
-    }
+public class RepositoryProfile extends GraphqlRepository{
 
     public CompletableFuture<UserByIdQuery.Data> gqlGetProfile(String username){
 
