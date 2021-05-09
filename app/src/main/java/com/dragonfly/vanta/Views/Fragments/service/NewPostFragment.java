@@ -76,6 +76,7 @@ public class NewPostFragment extends Fragment {
 
         initializeGooglePlaces();
 
+        //Accion de boton para enviar el nuevo post
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +97,16 @@ public class NewPostFragment extends Fragment {
             }
         });
 
+
+        //
+        dateEditTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).getDateDialog(dateEditTxt);
+            }
+        });
+
+        //Observers
         requestViewModel.getRequestCr().observe(getActivity(), new Observer<NewRequestMutation.Data>() {
             @Override
             public void onChanged(NewRequestMutation.Data data) {

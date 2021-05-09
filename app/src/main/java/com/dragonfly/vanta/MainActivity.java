@@ -11,6 +11,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +19,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -28,6 +31,9 @@ import com.dragonfly.vanta.Views.Fragments.chat.ChatListFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.vantapi.ChatByUserQuery;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -122,4 +128,26 @@ public class MainActivity extends AppCompatActivity {
         return token;
     }
 
+    public void getDateDialog(final EditText dateEdit){
+        final Calendar calendar = Calendar.getInstance();
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                String mString = String.valueOf(month);
+                String dString = String.valueOf(dayOfMonth);
+                if(month < 9){
+                    mString = "0"+ mString;
+                }
+                if(dayOfMonth < 9){
+                    dString = "0" + dString;
+                }
+                String dateString = String.valueOf(year) + "-" + mString + "-" + dString;
+                dateEdit.setText(dateString);
+            }
+        };
+        DatePickerDialog datePicker = new DatePickerDialog(this, R.style.DialogTheme , dateSetListener,
+                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+
+        datePicker.show();
+    }
 }
