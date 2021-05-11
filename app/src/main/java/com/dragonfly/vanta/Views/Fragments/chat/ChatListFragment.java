@@ -21,11 +21,6 @@ import com.vantapi.ChatByUserQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ChatListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ChatListFragment extends DialogFragment {
 
     private final static String TAG = "ChatListDialog";
@@ -70,8 +65,8 @@ public class ChatListFragment extends DialogFragment {
                 chatNames.add(chat.user1());
             }
         }
-        listView = view.findViewById(R.id.chatList);
 
+        listView = view.findViewById(R.id.chatList);
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, chatNames);
         listView.setAdapter(adapter);
 

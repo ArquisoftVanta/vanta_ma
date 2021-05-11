@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -25,9 +26,12 @@ import java.util.List;
 
 
 public class NewServiceFragment extends Fragment {
+    private static final String TAG = "Service";
+    int carSelectedId;
     AutocompleteSupportFragment orgFragment, dstFragment;
-    TextView orgTxt, dstTxt;
+    TextView orgTxt, dstTxt, carTxt, reqTxt;
     EditText dateText, timeText, valueText;
+    Button carSelectButton, reqSelectButton;
 
     public static NewServiceFragment newInstance() { return new NewServiceFragment(); }
 
@@ -46,8 +50,20 @@ public class NewServiceFragment extends Fragment {
         dateText = view.findViewById(R.id.fecha);
         timeText = view.findViewById(R.id.hora);
         valueText = view.findViewById(R.id.valor);
+        carTxt = view.findViewById(R.id.carTextView);
+        reqTxt = view.findViewById(R.id.reqTextView);
+        carSelectButton = view.findViewById(R.id.escogerVehiculo);
+        reqSelectButton = view.findViewById(R.id.escogerPasajeros);
 
         initializeGooglePlaces();
+
+        carSelectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //CarSelectFragment carSelect = new CarSelectFragment();
+                //carSelect.show(getParentFragmentManager(), "VehicleSelect");
+            }
+        });
 
         dateText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +73,7 @@ public class NewServiceFragment extends Fragment {
         });
     }
 
-
+    public void setCarSelectedId(int carSelectedId) { this.carSelectedId = carSelectedId; }
 
     private void initializeGooglePlaces() {
         List<Place.Field> places = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG);
@@ -93,6 +109,7 @@ public class NewServiceFragment extends Fragment {
             public void onError(@NonNull Status status) {
             }
         });
+
 
     }
 }

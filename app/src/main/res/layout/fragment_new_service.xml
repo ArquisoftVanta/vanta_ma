@@ -195,17 +195,23 @@
                 android:layout_height="wrap_content"
                 android:text="Escoger Pasajeros" />
 
+            <TextView
+                android:id="@+id/reqTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="8sp" />
+
             <Button
                 android:id="@+id/escogerVehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Escoger Vehiculo" />
 
-            <Button
-                android:id="@+id/ordernarRuta"
+            <TextView
+                android:id="@+id/carTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ordenar Ruta" />
+                android:textSize="8sp" />
 
             <Button
                 android:id="@+id/crearServicio"

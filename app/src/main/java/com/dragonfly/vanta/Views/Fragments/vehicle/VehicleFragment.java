@@ -90,9 +90,7 @@ public class VehicleFragment extends Fragment {
                     motor.setText("Cilindraje: " + data.engine());
                     color.setText("Color: " + data.color());
                     gas.setText("Tipo de combustible: " + data.gas_type());
-
                 }
-
             }
         });
     }

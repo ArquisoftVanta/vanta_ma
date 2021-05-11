@@ -1,5 +1,6 @@
 query GetVehicles{
     getVehicles{
+        id
         owner
         license_plate
         brand
