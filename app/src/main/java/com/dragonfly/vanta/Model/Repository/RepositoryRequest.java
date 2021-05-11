@@ -21,6 +21,8 @@ import okhttp3.OkHttpClient;
 
 public class RepositoryRequest extends GraphqlRepository{
 
+    public RepositoryRequest() { super(); }
+
     public CompletableFuture<CreateRequestMutation.Data> gqlCreateReq(RequestInput requestInput){
         final CompletableFuture <CreateRequestMutation.Data> res = new CompletableFuture<>();
         this.apolloClient.mutate(new CreateRequestMutation(requestInput))

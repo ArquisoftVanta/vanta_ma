@@ -17,6 +17,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class RepositoryProfile extends GraphqlRepository{
 
+    public RepositoryProfile() { super();}
+
     public CompletableFuture<UserByIdQuery.Data> gqlGetProfile(String username){
 
         final CompletableFuture<UserByIdQuery.Data> userData  = new CompletableFuture<>();

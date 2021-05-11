@@ -19,6 +19,8 @@ import okhttp3.OkHttpClient;
 
 public class RepositoryChat extends GraphqlRepository{
 
+    public RepositoryChat() { super(); }
+
     public CompletableFuture<ChatByUserQuery.Data> gqlChatByUser(String mail) {
         final CompletableFuture<ChatByUserQuery.Data> res = new CompletableFuture<>();
         this.apolloClient.query(new ChatByUserQuery(mail))

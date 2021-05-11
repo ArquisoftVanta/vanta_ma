@@ -20,9 +20,11 @@ import java.util.concurrent.CompletableFuture;
 
 import okhttp3.OkHttpClient;
 
-public class RepositoryVehicle extends  GraphqlRepository{
+public class RepositoryVehicle extends GraphqlRepository{
 
     int id = 1;
+
+    public RepositoryVehicle() { super(); }
 
     public CompletableFuture<GetVehiclesQuery.Data> vehiclesData(){
         final CompletableFuture<GetVehiclesQuery.Data> vehiclesInfo = new CompletableFuture<>();
