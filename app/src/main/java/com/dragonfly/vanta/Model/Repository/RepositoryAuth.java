@@ -17,10 +17,16 @@ import java.util.concurrent.CompletableFuture;
 
 import okhttp3.OkHttpClient;
 
-public class RepositoryAuth extends GraphqlRepository{
+public class RepositoryAuth {
+
+    ApolloClient apolloClient;
+    OkHttpClient okHttp = new OkHttpClient().newBuilder().build();
 
     public RepositoryAuth() {
-        super();
+        this.apolloClient = ApolloClient.builder()
+                .serverUrl("http://10.0.2.2:8000/graphql/endpoint")
+                .okHttpClient(okHttp)
+                .build();
     }
 
     public CompletableFuture<LoginUserMutation.Data> gqlLoginUser(String username, String password){

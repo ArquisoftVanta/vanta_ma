@@ -15,9 +15,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class RepositoryProfile extends GraphqlRepository{
+import okhttp3.OkHttpClient;
 
-    public RepositoryProfile() { super();}
+public class RepositoryProfile{
+
+    ApolloClient apolloClient;
+
+    public RepositoryProfile() {
+        this.apolloClient = ApolloClient.builder()
+            .serverUrl("http://10.0.2.2:8000/graphql/endpoint")
+            .build();
+    }
 
     public CompletableFuture<UserByIdQuery.Data> gqlGetProfile(String username){
 

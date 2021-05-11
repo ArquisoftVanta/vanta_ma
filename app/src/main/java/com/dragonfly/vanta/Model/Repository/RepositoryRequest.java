@@ -19,9 +19,17 @@ import java.util.concurrent.CompletableFuture;
 
 import okhttp3.OkHttpClient;
 
-public class RepositoryRequest extends GraphqlRepository{
+public class RepositoryRequest{
 
-    public RepositoryRequest() { super(); }
+    ApolloClient apolloClient;
+    OkHttpClient okHttp = new OkHttpClient().newBuilder().build();
+
+    public RepositoryRequest() {
+        this.apolloClient = ApolloClient.builder()
+            .serverUrl("http://10.0.2.2:8000/graphql/endpoint")
+            .okHttpClient(okHttp)
+            .build();
+    }
 
     public CompletableFuture<CreateRequestMutation.Data> gqlCreateReq(RequestInput requestInput){
         final CompletableFuture <CreateRequestMutation.Data> res = new CompletableFuture<>();

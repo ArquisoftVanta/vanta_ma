@@ -17,9 +17,17 @@ import java.util.concurrent.CompletableFuture;
 
 import okhttp3.OkHttpClient;
 
-public class RepositoryChat extends GraphqlRepository{
+public class RepositoryChat{
 
-    public RepositoryChat() { super(); }
+    ApolloClient apolloClient;
+    OkHttpClient okHttp = new OkHttpClient().newBuilder().build();
+
+    public RepositoryChat() {
+        this.apolloClient = ApolloClient.builder()
+            .serverUrl("http://10.0.2.2:8000/graphql/endpoint")
+            .okHttpClient(okHttp)
+            .build();
+    }
 
     public CompletableFuture<ChatByUserQuery.Data> gqlChatByUser(String mail) {
         final CompletableFuture<ChatByUserQuery.Data> res = new CompletableFuture<>();

@@ -20,11 +20,18 @@ import java.util.concurrent.CompletableFuture;
 
 import okhttp3.OkHttpClient;
 
-public class RepositoryVehicle extends GraphqlRepository{
+public class RepositoryVehicle{
 
+    ApolloClient apolloClient;
+    OkHttpClient okHttp = new OkHttpClient().newBuilder().build();
     int id = 1;
 
-    public RepositoryVehicle() { super(); }
+    public RepositoryVehicle() {
+        this.apolloClient = ApolloClient.builder()
+            .serverUrl("http://10.0.2.2:8000/graphql/endpoint")
+            .okHttpClient(okHttp)
+            .build();
+    }
 
     public CompletableFuture<GetVehiclesQuery.Data> vehiclesData(){
         final CompletableFuture<GetVehiclesQuery.Data> vehiclesInfo = new CompletableFuture<>();
