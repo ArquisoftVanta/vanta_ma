@@ -123,7 +123,7 @@ public class NewPostFragment extends Fragment {
         List<Place.Field> places = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG);
 
         if(!Places.isInitialized()){
-            Places.initialize(getContext(), "AIzaSyAxm0QLs59dJ34JezS4XmSs75bHKrFUBz0");
+            Places.initialize(getContext(), getString(R.string.google_maps_api_key));
         }
 
         orgFragment = (AutocompleteSupportFragment)
@@ -144,6 +144,9 @@ public class NewPostFragment extends Fragment {
             }
             @Override
             public void onError(@NonNull Status status) {
+                System.out.println(status);
+                System.out.println(status.toString());
+                System.out.println(status.getStatusMessage());
             }
         });
 

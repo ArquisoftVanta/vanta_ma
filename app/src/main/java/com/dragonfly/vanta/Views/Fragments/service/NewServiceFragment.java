@@ -79,7 +79,7 @@ public class NewServiceFragment extends Fragment {
         List<Place.Field> places = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG);
 
         if(!Places.isInitialized()){
-            Places.initialize(getContext(), "AIzaSyAxm0QLs59dJ34JezS4XmSs75bHKrFUBz0");
+            Places.initialize(getContext(),  getString(R.string.google_maps_api_key));
         }
 
         orgFragment = (AutocompleteSupportFragment)
