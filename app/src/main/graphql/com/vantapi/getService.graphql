@@ -2,7 +2,7 @@ query GetService($service_id: Int!){
     getService(service_id:$service_id){
         service_id
         user_id
-        date_
+        date
         state_service
         vehicle_id
         service_value

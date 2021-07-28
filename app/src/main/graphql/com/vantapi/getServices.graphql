@@ -2,7 +2,7 @@ query GetServices{
     getServices{
         service_id
         user_id
-        date_
+        date
         state_service
         vehicle_id
         service_value

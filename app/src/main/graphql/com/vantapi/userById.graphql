@@ -1,5 +1,5 @@
-query userById($user_mail: String!){
-    userById(token: $user_mail){
+query userById($user_id: String!){
+    userById(user_id: $user_id){
         user_name
         user_doc
         user_phone

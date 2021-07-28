@@ -1,7 +1,7 @@
 mutation DeleteService($id: Int!){
     deleteService(id:$id){
      user_id
-     date_
+     date
      state_service
      vehicle_id
      service_value

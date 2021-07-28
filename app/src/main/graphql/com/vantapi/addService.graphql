@@ -1,7 +1,7 @@
 mutation CreateService($service: serviceInput!){
     createService(service: $service){
         user_id
-        date_
+        date
         state_service
         vehicle_id
         service_value

@@ -34,7 +34,6 @@ public class RepositoryProfile{
 
             @Override
             public void onResponse(@NotNull Response<UserByIdQuery.Data> response) {
-
                 if (response.hasErrors()){
                     String errors = "";
                     for (Error e: response.getErrors()) { errors += e.toString(); }
@@ -42,7 +41,6 @@ public class RepositoryProfile{
                 }else{
                     userData.complete(response.getData());
                 }
-
             }
 
             @Override
