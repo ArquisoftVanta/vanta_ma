@@ -48,11 +48,15 @@ public class LoginViewModel extends ViewModel {
             CompletableFuture<LoginUserMutation.Data> loginDataPromise = loginRepository.gqlLoginUser(username, password);
             try {
                 LoginUserMutation.Data loginData = loginDataPromise.get(2L, TimeUnit.SECONDS);
-                jwt.setValue(loginData);
+                System.out.println(loginData.loginUser());
+                if(loginData.loginUser() != null){
+                    jwt.setValue(loginData);
+                }else{
+                    toastErrorObserver.setValue("Correo o Contraseña Incorrectas");
+                }
             }catch(Error | ExecutionException | InterruptedException | TimeoutException e){
                 toastErrorObserver.setValue("No se pudo comunicar con el servidor");
             }
-
         }else{
             toastErrorObserver.setValue("Formato de Correo o Contraseña Erroneos");
         }

@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //Receives JWT and goes to next actvity
+        //Receives and saves JWT when it changes and goes to next actvity
         loginViewModel.getJWT().observe(this, new Observer<LoginUserMutation.Data>() {
             @Override
             public void onChanged(LoginUserMutation.Data data) {

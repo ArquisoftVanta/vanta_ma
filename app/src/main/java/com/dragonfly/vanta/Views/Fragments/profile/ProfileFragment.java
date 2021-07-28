@@ -57,8 +57,8 @@ public class ProfileFragment extends Fragment {
         profileViewModel = new ViewModelProvider(requireActivity()).get(ProfileViewModel.class);
 
         final String token = ((MainActivity) getActivity()).getToken();
-        profileViewModel.getUserProfile(token);
         final String mail = ((MainActivity) getActivity()).getMail();
+        profileViewModel.getUserProfile(mail);
         user_mail = (TextView) view.findViewById(R.id.user_mail);
         registry_datetime = (TextView) view.findViewById(R.id.registry_datetime);
         user_name = (EditText) view.findViewById(R.id.user_name);
