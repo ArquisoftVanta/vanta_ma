@@ -15,6 +15,10 @@
     <string name="reg_pss">Contraseña</string>
     <string name="reg_adr">Direccion</string>
 
+    <string name="chat_title">Conversacion con</string>
+    <string name="chat_msg">escribir mensaje</string>
+    <string name="chat_snd">Enviar</string>
+
 
     <string name="new_p_org">Origen</string>
     <string name="new_p_dst">Destino</string>
