@@ -144,9 +144,6 @@ public class NewPostFragment extends Fragment {
             }
             @Override
             public void onError(@NonNull Status status) {
-                System.out.println(status);
-                System.out.println(status.toString());
-                System.out.println(status.getStatusMessage());
             }
         });
 

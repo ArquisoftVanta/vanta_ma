@@ -22,6 +22,10 @@ import com.dragonfly.vanta.ViewModels.RegisterViewModel;
 import com.vantapi.RegisterUserMutation;
 import com.vantapi.type.RegisterInput;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link RegisterFragment#newInstance} factory method to
@@ -61,8 +65,14 @@ public class RegisterFragment extends DialogFragment {
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean valid = !editName.getText().toString().isEmpty() && !editMail.getText().toString().isEmpty() && !editPhone.getText().toString().isEmpty() &&
-                                !editDoc.getText().toString().isEmpty() && !editPass.getText().toString().isEmpty();
+                boolean valid = !editName.getText().toString().isEmpty() && !editMail.getText().toString().isEmpty() &&
+                                !editPhone.getText().toString().isEmpty() && !editDoc.getText().toString().isEmpty() &&
+                                !editPass.getText().toString().isEmpty() && !editAdress.getText().toString().isEmpty();
+
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd@HH:mm:ss");
+                Date date = new Date();
+                String converted = df.format(date);
+                System.out.println(converted);
 
                 if(valid){
                     registerInput = RegisterInput.builder()
@@ -71,9 +81,10 @@ public class RegisterFragment extends DialogFragment {
                             .userDoc(editDoc.getText().toString())
                             .userPhone(editPhone.getText().toString())
                             .password(editPass.getText().toString())
+                            .userAddress(editAdress.getText().toString())
                             .picture("")
                             .rh("")
-                            .registryDatetime("")
+                            .registryDatetime(converted)
                             .build();
                     getDialog().dismiss();
                     registerViewModel.registerUser(registerInput);

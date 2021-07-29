@@ -78,8 +78,8 @@ public class ProfileFragment extends Fragment {
                 user_phone.setText(data.userById().user_phone());
                 user_address.setText(data.userById().user_address());
                 rh.setText(data.userById().rh());
-                picture = data.userById().picture();
-                user_mail.setText(data.userById().user_name());
+                picture = "[]";
+                user_mail.setText(mail);
             }
         });
 
