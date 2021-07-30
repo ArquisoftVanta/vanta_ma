@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Borrar el token y salirse a la actividad le logeo
     private void logOut() {
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("jwt", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -121,13 +122,13 @@ public class MainActivity extends AppCompatActivity {
         String mail = sharedPref.getString("email", "example@mail.com");
         return mail;
     }
-
     public String getToken(){
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("jwt", Context.MODE_PRIVATE);
         String token = sharedPref.getString("token", "example@mail.com");
         return token;
     }
 
+    //Setup for date picker used in Request and Service creation
     public void getDateDialog(final EditText dateEdit){
         final Calendar calendar = Calendar.getInstance();
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {

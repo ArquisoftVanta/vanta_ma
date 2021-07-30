@@ -52,12 +52,12 @@ public class ChatListFragment extends DialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         chatNames = new ArrayList<>();
+
         //Fill array with names of conversations and present it in list view
         if(chatData.chatByUser().isEmpty()){
             chatNames.add("Usted no tiene ningun chat");
-        }else{
-
         }
+
         for(ChatByUserQuery.ChatByUser chat : chatData.chatByUser()){
             if(chatUser.equals(chat.user1())){
                 chatNames.add(chat.user2());
@@ -66,22 +66,19 @@ public class ChatListFragment extends DialogFragment {
             }
         }
 
+        //Put all Chat info in the array into the List View
         listView = view.findViewById(R.id.chatList);
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, chatNames);
         listView.setAdapter(adapter);
 
+        //Return info of the selected chat
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(!chatNames.get(position).equals("Usted no tiene ningun chat")){
                     ChatByUserQuery.ChatByUser chat = chatData.chatByUser().get(position);
-                    String mes;
-                    if (chat.conversation().isEmpty()){
-                        mes = "Este chat esta vacio";
-                    }else{
-                        mes = "Chat con: " + chatNames.get(position) + " - Ultimo msj: " + chat.conversation().get(chat.conversation().size()-1).content();
-                    }
-                    Toast.makeText(getActivity(), mes, Toast.LENGTH_LONG).show();
+                    ChatMessagingFragment chatMessagingFragment = new ChatMessagingFragment(chat , chatNames.get(position));
+                    chatMessagingFragment.show(getParentFragmentManager(), "ChatMessagingDialog");
                 }
             }
         });
