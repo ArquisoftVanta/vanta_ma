@@ -77,7 +77,7 @@ public class ChatListFragment extends DialogFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(!chatNames.get(position).equals("Usted no tiene ningun chat")){
                     ChatByUserQuery.ChatByUser chat = chatData.chatByUser().get(position);
-                    ChatMessagingFragment chatMessagingFragment = new ChatMessagingFragment(chat , chatNames.get(position));
+                    ChatMessagingFragment chatMessagingFragment = new ChatMessagingFragment(chat , chatUser, chatNames.get(position));
                     chatMessagingFragment.show(getParentFragmentManager(), "ChatMessagingDialog");
                 }
             }
