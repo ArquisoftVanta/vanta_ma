@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 chatViewModel.getChatByUser(mail);
             }
         });
-        chatViewModel.getChatData().observe(this, new Observer<ChatByUserQuery.Data>() {
+        chatViewModel.getChatsData().observe(this, new Observer<ChatByUserQuery.Data>() {
             @Override
             public void onChanged(ChatByUserQuery.Data data) {
                 ChatListFragment chatList = new ChatListFragment(data, mail);

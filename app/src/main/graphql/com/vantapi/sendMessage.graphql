@@ -1,0 +1,7 @@
+mutation sendMessage( $chat_id: String!, $user_id: String!, $msg: String!){
+    sendMessage(msg: {convId: $chat_id, userId: $user_id, content: $msg}){
+        _id
+        sender
+        content
+    }
+}
