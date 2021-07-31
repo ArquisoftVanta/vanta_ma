@@ -3,10 +3,5 @@ query ChatByUser($user_id: String!){
         _id
         user1
         user2
-        conversation{
-            sender
-            content
-            createdAt
-        }
     }
 }

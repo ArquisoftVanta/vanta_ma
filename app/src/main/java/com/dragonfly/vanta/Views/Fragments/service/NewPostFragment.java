@@ -93,6 +93,8 @@ public class NewPostFragment extends Fragment {
                             .build();
                     
                     requestViewModel.newRequest(coorOrg, coorDst, requestInput);
+                }else {
+                    Toast.makeText(getActivity(), "No se llenaron todos lo campos requeridos", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -110,15 +112,17 @@ public class NewPostFragment extends Fragment {
         requestViewModel.getRequestCr().observe(getActivity(), new Observer<NewRequestMutation.Data>() {
             @Override
             public void onChanged(NewRequestMutation.Data data) {
-                Toast.makeText(getActivity(), "Request Created", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Postulacion Creada", Toast.LENGTH_LONG).show();
             }
         });
 
         requestViewModel.getToastObsever().observe(getActivity(), new Observer<String>() {
             @Override
-            public void onChanged(String s) { Toast.makeText(getActivity(), s, Toast.LENGTH_LONG); }
+            public void onChanged(String s) { Toast.makeText(getActivity(), s, Toast.LENGTH_LONG).show(); }
         });
     }
+
+    //Google places configuration
     private void initializeGooglePlaces() {
         List<Place.Field> places = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG);
 

@@ -1,0 +1,10 @@
+mutation newService($coor1: coordinatesServInput!, $coor2: coordinatesServInput!, $ser: serviceInput!){
+    newService(ser: $ser, coor1: $coor1, coor2: $coor2){
+        service_id
+        user_id
+        service_id
+        date
+        time
+        places
+    }
+}

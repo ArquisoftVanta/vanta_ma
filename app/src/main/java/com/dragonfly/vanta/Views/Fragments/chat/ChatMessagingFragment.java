@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dragonfly.vanta.R;
 import com.dragonfly.vanta.ViewModels.ChatViewModel;
+import com.vantapi.ChatByIdQuery;
 import com.vantapi.ChatByUserQuery;
 import com.vantapi.SendMessageMutation;
 
@@ -48,8 +49,8 @@ public class ChatMessagingFragment extends DialogFragment {
     EditText messageEditText;
     TextView titleTextView;
 
-    public ChatMessagingFragment(ChatByUserQuery.ChatByUser chat, String user, String user2){
-        this.chat = chat;
+    public ChatMessagingFragment(String chatId, String user, String user2){
+        this.chatId = chatId;
         this.user = user;
         this.user2 = user2;
     }
@@ -64,28 +65,35 @@ public class ChatMessagingFragment extends DialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        chatViewModel = new ViewModelProvider(this).get(ChatViewModel.class);
+
         titleTextView = view.findViewById(R.id.textViewTitle);
         sendButton = view.findViewById(R.id.buttonSend);
         messageEditText = view.findViewById(R.id.editTextMessage);
         messageListView = view.findViewById(R.id.chat_messages_list);
 
-        //Put all formated messages into a single list as SpannableStrings
-        chatId = chat._id();
-        chatMsg = new ArrayList<>();
-        for (ChatByUserQuery.Conversation conv : chat.conversation()) {
-            Spanned text = formatText(conv.sender(), conv.content());
-            chatMsg.add(text);
-        }
-        adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, chatMsg);
-
-
-        messageListView.setAdapter(adapter);
-        messageListView.smoothScrollToPosition(adapter.getCount() -1);
         titleTextView.setText(user2);
 
-        //Action for when the message is sent
-        chatViewModel = new ViewModelProvider(this).get(ChatViewModel.class);
+        //Call the information of this chat from the Chat Service
+        chatViewModel.getChatById(user, chatId);
 
+        chatViewModel.getChatData().observe(this, new Observer<ChatByIdQuery.Data>() {
+            @Override
+            public void onChanged(ChatByIdQuery.Data data) {
+                chatMsg = new ArrayList<>();
+                //Put all formated messages into a single list as SpannableStrings
+                for (ChatByIdQuery.Conversation conv : data.chatById().conversation()) {
+                    Spanned text = formatText(conv.sender(), conv.content());
+                    chatMsg.add(text);
+                }
+                //Set the list into the ListAdapter
+                adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, chatMsg);
+                messageListView.setAdapter(adapter);
+                messageListView.setSelection(chatMsg.size()-1);
+            }
+        });
+
+        //Action for when the message is sent
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,9 +103,6 @@ public class ChatMessagingFragment extends DialogFragment {
                 }
             }
         });
-
-
-
     }
 
 
@@ -118,11 +123,8 @@ public class ChatMessagingFragment extends DialogFragment {
         chatViewModel.getMsgData().observe(this, new Observer<SendMessageMutation.Data>() {
             @Override
             public void onChanged(SendMessageMutation.Data data) {
-                Spanned textInternal = formatText(user, msg);
-                chatMsg.add(textInternal);
-                messageListView.smoothScrollToPosition(adapter.getCount() -1);
+                chatViewModel.getChatById(user, chatId);
                 messageEditText.setText("");
-                System.out.println(chatMsg.size());
             }
         });
     }
