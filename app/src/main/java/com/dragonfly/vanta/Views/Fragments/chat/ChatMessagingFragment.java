@@ -5,6 +5,7 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.StyleSpan;
+import android.util.ArrayMap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +23,26 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dragonfly.vanta.R;
 import com.dragonfly.vanta.ViewModels.ChatViewModel;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.vantapi.ChatByIdQuery;
 import com.vantapi.ChatByUserQuery;
 import com.vantapi.SendMessageMutation;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+import io.socket.client.Socket;
+import io.socket.client.IO;
+import io.socket.emitter.Emitter;
+
 
 public class ChatMessagingFragment extends DialogFragment {
 
@@ -37,7 +52,8 @@ public class ChatMessagingFragment extends DialogFragment {
     String user2;
     String chatId;
 
-    ChatByUserQuery.ChatByUser chat;
+    Socket chatSocket;
+
     ArrayList<Spanned> chatMsg;
     ArrayAdapter<Spanned> adapter;
 
@@ -58,6 +74,7 @@ public class ChatMessagingFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        socketConfig();
         return inflater.inflate(R.layout.fragment_chat_interface, container, false);
     }
 
@@ -100,11 +117,17 @@ public class ChatMessagingFragment extends DialogFragment {
                 String text_msg = messageEditText.getText().toString();
                 if (!text_msg.isEmpty()) {
                     sendMessage(text_msg);
+                    messageEditText.setText("");
                 }
             }
         });
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        chatSocket.disconnect();
+    }
 
     // Add the User in Bold with message appended
     private Spanned formatText(String user, String msg){
@@ -123,9 +146,47 @@ public class ChatMessagingFragment extends DialogFragment {
         chatViewModel.getMsgData().observe(this, new Observer<SendMessageMutation.Data>() {
             @Override
             public void onChanged(SendMessageMutation.Data data) {
+                JSONObject jsonMsg = new JSONObject();
+                try {
+                    jsonMsg.put("content", msg);
+                    jsonMsg.put("user", user);
+                    jsonMsg.put("chatId", chatId);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                chatSocket.emit("private message",jsonMsg);
+                
                 chatViewModel.getChatById(user, chatId);
-                messageEditText.setText("");
             }
         });
+    }
+
+    //Socket Connection
+
+    private void socketConfig(){
+        try{
+            URI uri = URI.create("http://10.0.2.2:8000");
+            Map<String, String> authOptions = new ArrayMap<>();
+            authOptions.put("usr", user);
+            authOptions.put("cht", chatId);
+            IO.Options options = IO.Options.builder()
+                    .setAuth(authOptions)
+                    .build();
+            chatSocket = IO.socket(uri, options);
+
+            chatSocket.on("private message", new Emitter.Listener() {
+                @Override
+                public void call(Object... args) {
+                    System.out.println(args[0].toString());
+                    chatViewModel.getChatById(user, chatId);
+                }
+            });
+
+            System.out.println(chatSocket);
+            chatSocket.connect();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
