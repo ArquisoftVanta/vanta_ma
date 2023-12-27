@@ -27,7 +27,7 @@ public class RepositoryService {
 
     public RepositoryService() {
         this.apolloClient = ApolloClient.builder()
-                .serverUrl("http://10.0.2.2:8000/graphql/endpoint")
+                .serverUrl("http://44.195.120.118:30000/graphql/endpoint")
                 .okHttpClient(okHttp)
                 .build();
     }
